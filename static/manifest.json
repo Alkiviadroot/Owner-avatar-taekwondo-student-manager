@@ -1,0 +1,25 @@
+{
+	"id": "taekwondo-student-manager",
+	"name": "Pambos Taekwondo",
+	"short_name": "PambosTkd",
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"orientation": "any",
+	"theme_color": "#ea861a",
+	"background_color": "#e2e1e0",
+	"dir": "ltr",
+	"lang": "gr",
+	"icons": [
+		{
+			"src": "/icons/280x284.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/icons/512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
