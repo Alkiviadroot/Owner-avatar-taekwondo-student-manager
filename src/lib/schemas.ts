@@ -77,7 +77,6 @@ export const deltia = z.object({
 export const epafes = z.object({
 	mathitis: z.string().trim(),
 	sxesi: z.string({ required_error: "Απαιτείται" }).trim(),
-	allo: z.string().max(100, "Πάρα πολλοί χαρακτήρες").trim(),
 	onoma: z.string({ required_error: "Απαιτείται" }).max(64, "Πάρα πολλοί χαρακτήρες").trim(),
 	epitheto: z.string({ required_error: "Απαιτείται" }).max(64, "Πάρα πολλοί χαρακτήρες").trim(),
 	paralavi: z.string().trim().default('false'),

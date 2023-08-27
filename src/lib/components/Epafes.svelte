@@ -1,21 +1,23 @@
 <script lang="ts">
-	import { SlideToggle } from '@skeletonlabs/skeleton';
+	import { SlideToggle,ListBox, ListBoxItem,popup } from '@skeletonlabs/skeleton';
+	import type { PopupSettings } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { epafes } from '$lib/schemas';
 	import { invalidateAll } from '$app/navigation';
-
 	import EpafesCarousel from '$lib/components/EpafesCarousel.svelte';
-
+	import { Icon, BarsArrowDown } from 'svelte-hero-icons';
 	export let data;
 	let epafesR: any = data.records;
-
 	const mathitisId = data.mathitisId;
+
 	let paralavi: boolean = false;
+
 	const { form, errors, enhance, constraints } = superForm(data.epafesForm, {
 		taintedMessage: 'Are you sure you want leave??',
 		resetForm: true,
 		validators: epafes
 	});
+
 	$form.paralavi = 'false';
 
 	function paralaviChange(): void {
@@ -29,44 +31,13 @@
 		if ($form.tilefonoE == null) $form.tilefonoE = undefined;
 	}
 
-	function sxesiChange(): void {
-		var alloText = <HTMLFormElement>document.getElementById('allo');
-		var sxesisError = <HTMLFormElement>document.getElementById('sxesiError');
-		var submitBtn = <HTMLFormElement>document.getElementById('submitEpafi');
-		console.log($form.sxesi);
-		if ($form.sxesi != 'Άλλο') {
-			alloText.setAttribute('hidden', '');
-			sxesisError.setAttribute('hidden', '');
-			submitBtn.removeAttribute('disabled');
-			$form.allo = undefined;
-		} else {
-			alloText.removeAttribute('hidden');
-			sxesisError.removeAttribute('hidden');
-			submitBtn.setAttribute('disabled', '');
-		}
-	}
+	const popupSxesi: PopupSettings = {
+		event: 'click',
+		target: 'popupSxesi',
+		placement: 'bottom'
+	};
+	let sxesiValue: string = '';
 
-	function alloChange(): void {
-		var sxesisError = <HTMLFormElement>document.getElementById('sxesiError');
-		var submitBtn = <HTMLFormElement>document.getElementById('submitEpafi');
-
-		if ($form.allo == '') $form.allo = undefined;
-		if ($form.allo != undefined) {
-			sxesisError.setAttribute('hidden', '');
-			submitBtn.removeAttribute('disabled');
-		} else {
-			sxesisError.removeAttribute('hidden');
-			submitBtn.setAttribute('disabled', '');
-		}
-	}
-
-	function getValue(): void {
-		console.log('sxesiRadio');
-	}
-	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-	let sxesiRadio: string;
-
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 </script>
 
 <EpafesCarousel {epafesR} />
@@ -74,38 +45,25 @@
 <form id="epafesForm" action="?/epafes" method="POST" use:enhance>
 	<h1 class="text-3xl font-bold mb-4">Επαφές</h1>
 
-	<span>Σχέση</span>
-
 	<div class="mt-1 w-full grid grid-cols-1 md:grid-cols-2 gap-4">
-		<RadioGroup
-			active="variant-filled-primary"
-			hover="hover:variant-soft-primary"
-			display="flex-col"
-			rounded="rounded-container-token"
-		>
-			<RadioGroup
-				display="flex"
-				border=""
-				active="variant-filled-primary"
-				hover="hover:variant-soft-primary"
-			>
-				<RadioItem bind:group={sxesiRadio} name="justify" value={'Μητέρα'} class="py-3"
-					>Μητέρα</RadioItem
-				>
-				<RadioItem bind:group={sxesiRadio} name="justify" value={'Πατέρας'} class="py-3"
-					>Πατέρας</RadioItem
-				>
-			</RadioGroup>
-
-			<RadioItem bind:group={sxesiRadio} name="justify" value={'Άλλο'} class="py-3 ">
-				<small class="mb-3 text-lg">Άλλο</small>{#if $errors.allo}
-					<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.allo}</small>
-				{/if}
-				<input on:change={getValue} class=" text-surface input" type="text" />
-			</RadioItem>
-		</RadioGroup>
-
-		<input type="text" name="sxesi" id="sxesi" value={sxesiRadio} hidden />
+		<label class="label">
+			<span>Σχέση</span>{#if $errors.sxesi}
+				<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.sxesi}</small>
+			{/if}
+			<div class="input-group input-group-divider grid-cols-[1fr_auto]">
+				<input
+					type="text"
+					name="sxesi"
+					id="sxesi"
+					class="input"
+					value={sxesiValue}
+					{...$constraints.sxesi}
+				/>
+				<button class="btn variant-filled" use:popup={popupSxesi}>
+					<Icon src={BarsArrowDown} class="w-4 h-4 mr-1" />
+				</button>
+			</div>
+		</label>
 
 		<SlideToggle
 			name="slider-label"
@@ -219,3 +177,18 @@
 	<a class="btn variant-filled-primary float-right mt-10" id="telos" href="/{mathitisId}">Τέλος →</a
 	>
 </form>
+
+<!-- Popup -->
+<div class="card p-4 max-w-sm" data-popup="popupSxesi">
+	<div class="grid grid-cols-1 gap-2">
+		<ListBox>
+			<ListBoxItem bind:group={sxesiValue} name="medium" value="Μητέρα">Μητέρα</ListBoxItem>
+			<ListBoxItem bind:group={sxesiValue} name="medium" value="Πατέρας">Πατέρας</ListBoxItem>
+			<ListBoxItem bind:group={sxesiValue} name="medium" value="Γίαγια">Γίαγια</ListBoxItem>
+			<ListBoxItem bind:group={sxesiValue} name="medium" value="Παπούς">Παπούς</ListBoxItem>
+			<ListBoxItem bind:group={sxesiValue} name="medium" value="Θείος">Θείος</ListBoxItem>
+			<ListBoxItem bind:group={sxesiValue} name="medium" value="Θεία">Θεία</ListBoxItem>
+		</ListBox>
+	</div>
+	<div class="arrow bg-surface-100-800-token" />
+</div>
