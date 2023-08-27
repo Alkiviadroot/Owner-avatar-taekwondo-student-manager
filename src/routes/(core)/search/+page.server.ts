@@ -13,7 +13,7 @@ export const load = async ({ locals }: any,) => {
         for (const mathitis of mathites) {
             if (mathitis.genethlia != "") {
                 var date = new Date(mathitis.genethlia);
-                mathitis.genethlia = moment(date).calendar();
+                mathitis.genethlia = moment(date).format('DD/MM/YYYY');
             }
         }
 
