@@ -20,6 +20,9 @@
 				: elemCarousel.scrollLeft + elemCarousel.clientWidth; // step right
 		elemCarousel.scroll(x, 0);
 	}
+
+
+
 </script>
 
 <div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center mb-4">

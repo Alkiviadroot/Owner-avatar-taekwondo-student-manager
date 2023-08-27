@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { SlideToggle,ListBox, ListBoxItem,popup } from '@skeletonlabs/skeleton';
+	import { SlideToggle, ListBox, ListBoxItem, popup } from '@skeletonlabs/skeleton';
 	import type { PopupSettings } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { epafes } from '$lib/schemas';
-	import { invalidateAll } from '$app/navigation';
 	import EpafesCarousel from '$lib/components/EpafesCarousel.svelte';
 	import { Icon, BarsArrowDown } from 'svelte-hero-icons';
 	export let data;
@@ -11,6 +10,7 @@
 	const mathitisId = data.mathitisId;
 
 	let paralavi: boolean = false;
+
 
 	const { form, errors, enhance, constraints } = superForm(data.epafesForm, {
 		taintedMessage: 'Are you sure you want leave??',
@@ -37,12 +37,11 @@
 		placement: 'bottom'
 	};
 	let sxesiValue: string = '';
-
 </script>
 
 <EpafesCarousel {epafesR} />
 
-<form id="epafesForm" action="?/epafes" method="POST" use:enhance>
+<form id="epafesForm" action="?/epafes" method="POST" >
 	<h1 class="text-3xl font-bold mb-4">Επαφές</h1>
 
 	<div class="mt-1 w-full grid grid-cols-1 md:grid-cols-2 gap-4">
