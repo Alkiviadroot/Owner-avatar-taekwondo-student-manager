@@ -1,10 +1,9 @@
-import { redirect, fail, type Action } from '@sveltejs/kit';
-import { superValidate, setError } from "sveltekit-superforms/server"
+import { fail } from '@sveltejs/kit';
+import { superValidate } from "sveltekit-superforms/server"
 import { epafes } from '$lib/schemas';
 import { serializeNonPOJOs } from '$lib/utils.js';
-import type { Actions } from './$types';
 
-export const load = async ({ locals, params }:any,loadEvent:any) => {
+export const load = async ({ locals, params }:any) => {
 
     const epafesForm = await superValidate(epafes);
 

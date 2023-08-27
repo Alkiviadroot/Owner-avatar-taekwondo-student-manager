@@ -3,7 +3,6 @@
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import { Icon, Home, UserPlus, MagnifyingGlass, CalendarDays } from 'svelte-hero-icons';
-	import { attr } from 'svelte/internal';
 
 	export let initials: string;
 	export let avatar: string;
