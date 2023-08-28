@@ -1,13 +1,108 @@
 <script lang="ts">
-	import { Avatar } from '@skeletonlabs/skeleton';
+	import { Avatar, TabGroup, Tab } from '@skeletonlabs/skeleton';
+	import { onMount } from 'svelte';
+	import {
+		Icon,
+		Phone,
+		Home,
+		UserCircle,
+		Document,
+		Heart,
+		UserGroup,
+		PencilSquare,
+		Trophy,
+		Banknotes
+	} from 'svelte-hero-icons';
+	import moment from 'moment';
+
+	let phone = false;
+	onMount(() => {
+		const screenWidth = window.screen.width;
+		if (screenWidth <= 500) phone = true;
+	});
 
 	export let data;
-	const mathitis=data.profile;
-	const fotografia=data.fotografia;
-
+	const mathitis = data.profile;
+	let tabSet: number = 0;
 </script>
 
+<div class="flex justify-center p-2 mb-7">
+	<div class="inline-block mr-5">
+		<Avatar
+			src={mathitis.fotografia}
+			border="border-4  {mathitis.energos ? 'border-primary-500' : 'border-surface-400'}"
+			initials="{mathitis.onoma[0]}{mathitis.epitheto[0]}"
+			width="w-32"
+			rounded="rounded-full"
+		/>
+	</div>
+	<div class="inline-block">
+		<h1 class="text-3xl mb-3">
+			{mathitis.onoma.charAt(0).toUpperCase() + mathitis.onoma.slice(1)}
+			{mathitis.epitheto.charAt(0).toUpperCase() + mathitis.epitheto.slice(1)}
+		</h1>
 
+		<h1 class="mb-2">
+			{#if mathitis.kinito != '0'}
+				<a href="tel:{mathitis.kinito}">
+					<span class="inline-flex items-baseline mb-2">
+						<Icon src={Phone} class="w-5 h-5 mr-1" />
+						<span> {mathitis.kinito} </span>
+					</span>
+				</a>
+			{/if}
+		</h1>
+		<h1>
+			{#if mathitis.tilefonoS != '0'}
+				<a href="tel:{mathitis.tilefonoS}">
+					<span class="inline-flex items-baseline mb-2">
+						<Icon src={Home} class="w-5 h-5 mr-1" />
+						<span> {mathitis.tilefonoS} </span>
+					</span>
+				</a>
+			{/if}
+		</h1>
+	</div>
+</div>
 
-<Avatar src={fotografia} initials="{mathitis.onoma[0]}{mathitis.epitheto[0]}" width="w-32" rounded="rounded-full" />
-{mathitis.onoma} {mathitis.epitheto}
+<TabGroup justify={phone ? 'justify-start' : 'justify-center'} id="tabs">
+	<Tab bind:group={tabSet} name="user" value={0}>
+		<span><Icon src={UserCircle} class="w-7 h-7" /></span>
+	</Tab>
+	<Tab bind:group={tabSet} name="health" value={1}>
+		<span><Icon src={Heart} class="w-7 h-7" /></span>
+	</Tab>
+	<Tab bind:group={tabSet} name="documents" value={2}>
+		<span><Icon src={Document} class="w-7 h-7" /></span>
+	</Tab>
+	<Tab bind:group={tabSet} name="contacts" value={3}>
+		<span><Icon src={UserGroup} class="w-7 h-7" /></span>
+	</Tab>
+	<Tab bind:group={tabSet} name="exams" value={4}>
+		<span><Icon src={Trophy} class="w-7 h-7" /></span>
+	</Tab>
+	<Tab bind:group={tabSet} name="payment" value={5}>
+		<span><Icon src={Banknotes} class="w-7 h-7" /></span>
+	</Tab>
+	<Tab bind:group={tabSet} name="edit" value={6}>
+		<span><Icon src={PencilSquare} class="w-7 h-7" /></span>
+	</Tab>
+	<!-- Tab Panels --->
+	<svelte:fragment slot="panel">
+		{#if tabSet === 0}
+			(tab panel 1 contents)
+		{:else if tabSet === 1}
+			(tab panel 2 contents)
+		{:else if tabSet === 2}
+			(tab panel 3 contents)
+		{:else if tabSet === 3}
+			(tab panel 4 contents)
+		{:else if tabSet === 4}
+			(tab panel 5 contents)
+		{:else if tabSet === 5}
+			(tab panel 6 contents)
+		{:else if tabSet === 6}
+			(tab panel 7 contents)
+		{/if}
+	</svelte:fragment>
+</TabGroup>

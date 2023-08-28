@@ -32,7 +32,7 @@ export const actions = {
         try {
             await locals.pb.collection('provlimata').create(provlimataForm.data);
         } catch {
-            throw redirect(307, "/update/" + params.mathitisId + "/provlimata")
+            throw redirect(307, "/" + params.mathitisId )
         }
         throw redirect(307, "/new/" + params.mathitisId + "/deltia")
 

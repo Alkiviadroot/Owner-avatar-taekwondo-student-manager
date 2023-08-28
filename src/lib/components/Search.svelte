@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createSearchStore, searchHandler } from '$lib/stores/search';
 	import { onDestroy } from 'svelte';
+	import moment from 'moment';
 	import { Icon, Phone, Cake } from 'svelte-hero-icons';
 
 	export let data;
@@ -59,8 +60,7 @@
 					<span class="inline-flex items-baseline">
 						<Icon src={Cake} class="w-5 h-5 mr-1" />
 						<span>
-
-							{mathitis.genethlia}
+							{moment(mathitis.genethlia).format('DD/MM/YYYY')}
 						</span>
 					</span>
 				{/if}
