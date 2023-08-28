@@ -2,12 +2,19 @@
 	import { drawerStore, Avatar, modalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
-	import { Icon, Home, UserPlus, MagnifyingGlass, CalendarDays } from 'svelte-hero-icons';
+	import {
+		Icon,
+		Home,
+		UserPlus,
+		MagnifyingGlass,
+		CalendarDays,
+		SquaresPlus
+	} from 'svelte-hero-icons';
 
 	export let initials: string;
 	export let avatar: string;
 
-	function getPosition(string:string, subString:string, index:number) {
+	function getPosition(string: string, subString: string, index: number) {
 		return string.split(subString, index).join(subString).length;
 	}
 
@@ -32,48 +39,56 @@
 	function logoutModal(): void {
 		modalStore.trigger(modal);
 	}
-let test="";
+	let test = '';
 	const navigation = [
 		{
 			id: 'arxiki',
 			title: 'Αρχική',
 			icon: Home,
-			href: '/',
-		},
-
-		{
-			id: 'neosMathitis',
-			title: 'Νέος Μαθητής',
-			icon: UserPlus,
-			href: '/new',
-
-		},
-		{
-			id: 'anazitisi',
-			title: 'Αναζήτηση',
-			icon: MagnifyingGlass,
-			href: '/search',
+			href: '/'
 		},
 		{
 			id: 'apousiologio',
 			title: 'Απουσιολόγιο',
 			icon: CalendarDays,
-			href: '/absences',
-		}
+			href: '/absences'
+		},
+		{
+			id: 'anazitisi',
+			title: 'Αναζήτηση',
+			icon: MagnifyingGlass,
+			href: '/search'
+		},
+		{
+			id: 'neosMathitis',
+			title: 'Νέος Μαθητής',
+			icon: UserPlus,
+			href: '/new'
+		},
+		{
+			id: 'group',
+			title: 'Groups',
+			icon: SquaresPlus,
+			href: '/groups'
+		},
 	];
-
 </script>
 
 <nav class="list-nav p-4 navC">
-	<ul >
+	<ul>
 		{#each navigation as navItem}
-			<li >
+			<li>
 				<a
 					id={navItem.id}
 					href={navItem.href}
 					on:click={drawerClose}
-					class="font-medium {$page.url.pathname.substring(0, getPosition($page.url.pathname, '/', 2)) === navItem.href ? '!bg-primary-500' : ''}"
-					>
+					class="font-medium {$page.url.pathname.substring(
+						0,
+						getPosition($page.url.pathname, '/', 2)
+					) === navItem.href
+						? '!bg-primary-500'
+						: ''}"
+				>
 					<Icon src={navItem.icon} class="w-4 h-4 mr-1" />
 					{navItem.title}
 				</a>

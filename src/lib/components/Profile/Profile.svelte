@@ -84,9 +84,7 @@
 	<Tab bind:group={tabSet} name="payment" value={5}>
 		<span><Icon src={Banknotes} class="w-7 h-7" /></span>
 	</Tab>
-	<Tab bind:group={tabSet} name="edit" value={6}>
-		<span><Icon src={PencilSquare} class="w-7 h-7" /></span>
-	</Tab>
+	
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
@@ -101,8 +99,6 @@
 			(tab panel 5 contents)
 		{:else if tabSet === 5}
 			(tab panel 6 contents)
-		{:else if tabSet === 6}
-			(tab panel 7 contents)
 		{/if}
 	</svelte:fragment>
 </TabGroup>

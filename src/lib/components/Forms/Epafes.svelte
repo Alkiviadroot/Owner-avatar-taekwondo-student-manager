@@ -3,7 +3,7 @@
 	import type { PopupSettings } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { epafes } from '$lib/schemas';
-	import EpafesCarousel from '$lib/components/EpafesCarousel.svelte';
+	import EpafesCarousel from '$lib/components/Carousels/EpafesCarousel.svelte';
 	import { Icon, BarsArrowDown } from 'svelte-hero-icons';
 	export let data;
 	let epafesR: any = data.records;
