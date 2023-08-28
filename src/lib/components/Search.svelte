@@ -18,7 +18,6 @@
 	const searchMathites: Mathitis[] = data.mathites.map((mathitis: Mathitis) => ({
 		...mathitis,
 
-        
 		searchTerms: `${mathitis.onoma} ${mathitis.epitheto} ${mathitis.kinito}`
 	}));
 
@@ -29,7 +28,6 @@
 	onDestroy(() => {
 		unsubscribe();
 	});
-
 </script>
 
 <input
@@ -44,16 +42,16 @@
 	{#each $searchStore.filtered as mathitis}
 		<a href="/{mathitis.id}">
 			<div
-				class="card p-4 m-3 h-36 {mathitis.energos ? 'variant-ghost-primary' : 'variant-ghost-surface'}"
+				class="card p-4 m-3 h-36 {mathitis.energos
+					? 'variant-ghost-primary'
+					: 'variant-ghost-surface'}"
 			>
 				<h2 class="mb-3 text-lg">{mathitis.onoma} {mathitis.epitheto}</h2>
 				{#if mathitis.kinito != '0'}
-					<a href="tel:{mathitis.kinito}">
-						<span class="inline-flex items-baseline mb-2">
-							<Icon src={Phone} class="w-5 h-5 mr-1" />
-							<span> {mathitis.kinito} </span>
-						</span>
-					</a>
+					<span class="inline-flex items-baseline mb-2">
+						<Icon src={Phone} class="w-5 h-5 mr-1" />
+						<span> {mathitis.kinito} </span>
+					</span>
 				{/if}
 				<br />
 				{#if mathitis.genethlia != ''}

@@ -52,7 +52,7 @@
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft"><Nav {initials} {avatar}/></svelte:fragment>
-	<div class="container max-auto p-10">
+	<div id="phonePadding" class="container max-auto p-10">
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter" >		

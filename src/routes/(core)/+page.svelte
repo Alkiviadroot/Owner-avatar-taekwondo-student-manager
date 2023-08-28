@@ -1,10 +1,7 @@
 <script lang="ts">
-    	import GenethliaS from '$lib/components/Carousels/GenethliaSCarousel.svelte';
-        import type { PageData } from './$types';
-	    export let data: PageData;
-        const genethliaS=data.simeraGenethlia;
+	import Home from '$lib/components/Home.svelte';
+	import type { PageData } from './$types';
+	export let data: PageData;
 </script>
 
-<GenethliaS {genethliaS}/>
-
-
+<Home {data} />

@@ -3,7 +3,7 @@
 	import moment from 'moment';
 	let elemCarousel: HTMLDivElement;
 
-	export let genethliaS: any;
+	export let genethliaΑ: any;
 	function carouselLeft(): void {
 		const x =
 			elemCarousel.scrollLeft === 0
@@ -21,16 +21,16 @@
 	}
 </script>
 
-	<h1 class="text-xl mb-3">Σήμερα</h1>
-	<div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center mb-4">
+	<h1 class="text-xl mb-3">Επόμενα</h1>
+	<div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
 		<!-- Button: Left -->
 		<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
 			<Icon src={ArrowLeft} class="w-4 h-4 mr-1" />
 		</button>
 		<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
-			{#each genethliaS as mathitis}
+			{#each genethliaΑ as mathitis}
 				<a href="/{mathitis.id}">
-					<div class="card p-4 m-3 h-36 bg-gradient-to-br variant-gradient-warning-error">
+					<div class="card p-4 m-3 h-36 variant-ghost-error">
 						<h2 class="mb-3 text-lg">{mathitis.onoma} {mathitis.epitheto}</h2>
 						{#if mathitis.kinito != '0'}
 							<span class="inline-flex items-baseline mb-2">
@@ -52,7 +52,7 @@
 			{/each}
 		</div>
 		<!-- Button: Right -->
-		<button type="button" class="btn-icon variant-filled" on:click={carouselRight} >
+		<button type="button" class="btn-icon variant-filled" on:click={carouselRight}>
 			<Icon src={ArrowRight} class="w-4 h-4 mr-1" />
 		</button>
 	</div>
