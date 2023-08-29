@@ -1,7 +1,6 @@
 import { redirect } from '@sveltejs/kit';
-import { serializeNonPOJOs } from '$lib/utils.js';
+import { addHours, serializeNonPOJOs } from '$lib/utils.js';
 import moment from 'moment';
-
 export const load = async ({ locals }: any,) => {
 
 
@@ -11,7 +10,7 @@ export const load = async ({ locals }: any,) => {
 
     for (const mathitis of mathites) {
         const genethlia = moment(mathitis.genethlia).format('MMDD')
-        const d = new Date();
+        const d = addHours(new Date(), 3);
         const simera=moment(d).format('MMDD')
         const meres=parseInt(genethlia)-parseInt(simera);
         mathitis.meres = meres;
@@ -22,7 +21,6 @@ export const load = async ({ locals }: any,) => {
     anerxomenaGenethlia.sort((a: any, b: any) => {
         return a.meres - b.meres;
     });
-
 
     return { simeraGenethlia, anerxomenaGenethlia }
 }
