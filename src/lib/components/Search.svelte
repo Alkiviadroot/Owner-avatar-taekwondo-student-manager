@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { createSearchStore, searchHandler } from '$lib/stores/search';
+	import MathitisCard from '$lib/components/MathitisCard.svelte';
 	import { onDestroy } from 'svelte';
-	import moment from 'moment';
-	import { Icon, Phone, Cake } from 'svelte-hero-icons';
 
 	export let data;
 
@@ -13,6 +12,11 @@
 		energos: string;
 		kinito: string;
 		genethlia: string;
+	};
+
+	const show = {
+		kinito: true,
+		genethlia: true
 	};
 
 	const searchMathites: Mathitis[] = data.mathites.map((mathitis: Mathitis) => ({
@@ -40,30 +44,11 @@
 />
 <div class="mathitis-grid">
 	{#each $searchStore.filtered as mathitis}
-		<a href="/{mathitis.id}">
-			<div
-				class="card p-4 m-3 h-36 {mathitis.energos
-					? 'variant-ghost-primary'
-					: 'variant-ghost-surface'}"
-			>
-				<h2 class="mb-3 text-lg">{mathitis.onoma} {mathitis.epitheto}</h2>
-				{#if mathitis.kinito != '0'}
-					<span class="inline-flex items-baseline mb-2">
-						<Icon src={Phone} class="w-5 h-5 mr-1" />
-						<span> {mathitis.kinito} </span>
-					</span>
-				{/if}
-				<br />
-				{#if mathitis.genethlia != ''}
-					<span class="inline-flex items-baseline">
-						<Icon src={Cake} class="w-5 h-5 mr-1" />
-						<span>
-							{moment(mathitis.genethlia).format('DD/MM/YYYY')}
-						</span>
-					</span>
-				{/if}
-			</div>
-		</a>
+		{#if mathitis.energos}
+			<MathitisCard {mathitis} {show} style='variant-ghost-primary'/>
+		{:else}
+			<MathitisCard {mathitis} {show}  style='variant-ghost-surface'/>
+		{/if}
 	{/each}
 </div>
 

@@ -1,9 +1,15 @@
 <script lang="ts">
-	import { Icon, ArrowLeft, ArrowRight, Phone, Cake } from 'svelte-hero-icons';
-	import moment from 'moment';
+	import { Icon, ArrowLeft, ArrowRight } from 'svelte-hero-icons';
+	import MathitisCard from '$lib/components/MathitisCard.svelte';
 	let elemCarousel: HTMLDivElement;
 
 	export let genethliaS: any;
+
+	const show = {
+		kinito: true,
+		genethlia: true
+	};
+
 	function carouselLeft(): void {
 		const x =
 			elemCarousel.scrollLeft === 0
@@ -21,38 +27,19 @@
 	}
 </script>
 
-	<h1 class="text-xl mb-3">Σήμερα</h1>
-	<div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center mb-4">
-		<!-- Button: Left -->
-		<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
-			<Icon src={ArrowLeft} class="w-4 h-4 mr-1" />
-		</button>
-		<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
-			{#each genethliaS as mathitis}
-				<a href="/{mathitis.id}">
-					<div class="card p-4 m-3 h-36 bg-gradient-to-br variant-gradient-warning-error">
-						<h2 class="mb-3 text-lg">{mathitis.onoma} {mathitis.epitheto}</h2>
-						{#if mathitis.kinito != '0'}
-							<span class="inline-flex items-baseline mb-2">
-								<Icon src={Phone} class="w-5 h-5 mr-1" />
-								<span> {mathitis.kinito} </span>
-							</span>
-						{/if}
-						<br />
-						{#if mathitis.genethlia != ''}
-							<span class="inline-flex items-baseline">
-								<Icon src={Cake} class="w-5 h-5 mr-1" />
-								<span>
-									{moment(mathitis.genethlia).format('DD/MM/YYYY')}
-								</span>
-							</span>
-						{/if}
-					</div>
-				</a>
-			{/each}
-		</div>
-		<!-- Button: Right -->
-		<button type="button" class="btn-icon variant-filled" on:click={carouselRight} >
-			<Icon src={ArrowRight} class="w-4 h-4 mr-1" />
-		</button>
+<h1 class="text-xl mb-3">Σήμερα</h1>
+<div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center mb-4">
+	<!-- Button: Left -->
+	<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
+		<Icon src={ArrowLeft} class="w-4 h-4 mr-1" />
+	</button>
+	<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
+		{#each genethliaS as mathitis}
+			<MathitisCard {mathitis} {show} style="bg-gradient-to-br variant-gradient-warning-error" />
+		{/each}
 	</div>
+	<!-- Button: Right -->
+	<button type="button" class="btn-icon variant-filled" on:click={carouselRight}>
+		<Icon src={ArrowRight} class="w-4 h-4 mr-1" />
+	</button>
+</div>

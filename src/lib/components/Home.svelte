@@ -8,7 +8,7 @@
 	let tabSet: number = 0;
 	export let data;
 	const genethliaS = data.simeraGenethlia;
-	const genethliaΑ = data.anerxomenaGenethlia;
+	const genethliaA = data.anerxomenaGenethlia;
 
 	onMount(() => {
 		var padding = <HTMLFormElement>document.getElementById('phonePadding');
@@ -45,7 +45,7 @@
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
 			<GenethliaS {genethliaS} />
-			<GenethliaA {genethliaΑ} />
+			<GenethliaA {genethliaA} />
 		{:else if tabSet === 1}
 			(tab panel 2 contents)
 		{:else if tabSet === 2}
