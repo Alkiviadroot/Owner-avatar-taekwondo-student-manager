@@ -18,7 +18,7 @@ export const load = async ({ locals }: any,) => {
     }
 
     const simeraGenethlia = mathites.filter((item: any) => item.meres == 0);
-    const anerxomenaGenethlia = mathites.filter((item: any) => item.meres >= 0);
+    const anerxomenaGenethlia = mathites.filter((item: any) => item.meres >= 0 &&  item.meres!=0 );
     anerxomenaGenethlia.sort((a: any, b: any) => {
         return a.meres - b.meres;
     });
