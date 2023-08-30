@@ -1,4 +1,7 @@
 <script lang="ts">
+	import Mathitis from '$lib/components/Profile/Mathitis.svelte';
+
+
 	import { Avatar, TabGroup, Tab } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 	import {
@@ -9,11 +12,9 @@
 		Document,
 		Heart,
 		UserGroup,
-		PencilSquare,
 		Trophy,
 		Banknotes
 	} from 'svelte-hero-icons';
-	import moment from 'moment';
 
 	let phone = false;
 	onMount(() => {
@@ -21,7 +22,7 @@
 		if (screenWidth <= 500) phone = true;
 	});
 
-	export let data;
+	export let data:any;
 	const mathitis = data.profile;
 	let tabSet: number = 0;
 </script>
@@ -29,7 +30,7 @@
 <div class="flex justify-center p-2 mb-7">
 	<div class="inline-block mr-5">
 		<Avatar
-			src={mathitis.fotografia}
+			src={mathitis.fotografiaView}
 			border="border-4  {mathitis.energos ? 'border-primary-500' : 'border-surface-400'}"
 			initials="{mathitis.onoma[0]}{mathitis.epitheto[0]}"
 			width="w-32"
@@ -43,7 +44,7 @@
 		</h1>
 
 		<h1 class="mb-2">
-			{#if mathitis.kinito != '0'}
+			{#if mathitis.kinito != '0' && mathitis.kinito != undefined}
 				<a href="tel:{mathitis.kinito}">
 					<span class="inline-flex items-baseline mb-2">
 						<Icon src={Phone} class="w-5 h-5 mr-1" />
@@ -53,7 +54,7 @@
 			{/if}
 		</h1>
 		<h1>
-			{#if mathitis.tilefonoS != '0'}
+			{#if mathitis.tilefonoS != '0'  && mathitis.tilefonoS != undefined}
 				<a href="tel:{mathitis.tilefonoS}">
 					<span class="inline-flex items-baseline mb-2">
 						<Icon src={Home} class="w-5 h-5 mr-1" />
@@ -84,11 +85,11 @@
 	<Tab bind:group={tabSet} name="payment" value={5}>
 		<span><Icon src={Banknotes} class="w-7 h-7" /></span>
 	</Tab>
-	
+
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
-			(tab panel 1 contents)
+		<Mathitis {data}/>
 		{:else if tabSet === 1}
 			(tab panel 2 contents)
 		{:else if tabSet === 2}

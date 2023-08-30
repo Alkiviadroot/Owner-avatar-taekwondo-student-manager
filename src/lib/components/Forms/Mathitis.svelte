@@ -1,14 +1,15 @@
 <script lang="ts">
-	import { SlideToggle } from '@skeletonlabs/skeleton';
+	import { SlideToggle, ProgressRadial } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { mathitis } from '$lib/schemas';
+	import { page } from '$app/stores';
 	import { generateString } from '$lib/utils';
 
 	export let data;
 	let idNum: string;
-	let energos: boolean = true;
-
-	const { form, errors, enhance, constraints } = superForm(data.mathitisForm, {
+	let energos: boolean;
+	if ($page.url.pathname == '/new') energos = true;
+	const { form, errors, constraints, delayed } = superForm(data.mathitisForm, {
 		taintedMessage: 'Are you sure you want leave??',
 		multipleSubmits: 'prevent',
 		resetForm: true,
@@ -38,7 +39,7 @@
 	}
 </script>
 
-<form id="mathitisForm" action="?/mathitis" method="POST" enctype="multipart/form-data" use:enhance>
+<form id="mathitisForm" action="?/mathitis" method="POST" enctype="multipart/form-data">
 	<h1 class="text-3xl font-bold mb-10">Στοιχεία Μαθητή</h1>
 
 	<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -275,7 +276,16 @@
 	</div>
 	<input hidden id="id" name="id" type="text" value={idNum} />
 	<input hidden id="energos" name="energos" type="text" value={energos ? 'true' : 'false'} />
-	<button class="btn variant-filled-success float-right mt-10" id="submitMathitis" type="submit"
-		>Αποθήκευση →</button
-	>
+	<div class="float-right mt-10 mb-7">
+		<button class="btn variant-filled-success" id="submitMathitis" type="submit"
+			>Αποθήκευση →</button
+		>
+		{#if $delayed}<ProgressRadial
+				...
+				stroke={100}
+				class="w-7 h-7 float-right ml-3"
+				meter="stroke-success-500"
+				track="stroke-success-500/30"
+			/>{/if}
+	</div>
 </form>
