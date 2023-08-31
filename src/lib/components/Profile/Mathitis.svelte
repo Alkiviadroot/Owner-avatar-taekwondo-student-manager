@@ -12,7 +12,8 @@
 		Phone,
 		Cake,
 		Envelope,
-		Calendar
+		Calendar,
+		MinusSmall,
 	} from 'svelte-hero-icons';
 
 	export let data: any;
@@ -22,7 +23,6 @@
 		var MathitisData = <HTMLFormElement>document.getElementById('MathitisData');
 		var MathitisForm = <HTMLFormElement>document.getElementById('MathitisForm');
 		var MathitisEditBtn = <HTMLFormElement>document.getElementById('MathitisEditBtn');
-		
 
 		if (!MathitisEdit) {
 			MathitisData.setAttribute('hidden', '');
@@ -66,10 +66,10 @@
 >
 
 <div class="flex justify-center">
-	<div id="MathitisData" class="mt-5">
+	<div id="MathitisData">
 		<div>
-			<span class="inline-flex items-baseline mb-2">
-				<Icon src={MapPin} class="w-5 h-5 mr-1" />
+			<span class="inline-flex items-baseline">
+				<Icon src={MapPin} class="w-5 h-5 mr-1 mt-5" />
 				<span>
 					{mathitis.diefthinsi != '' ? mathitis.diefthinsi : 'Mη διαθέσιμη διεύθυνση'}
 					{mathitis.tk != undefined ? ' / ' + mathitis.tk : ''}
@@ -79,24 +79,29 @@
 		</div>
 
 		<div>
-			<span class="inline-flex items-baseline mb-2">
-				{#if mathitis.epankelma != ''}
+			{#if mathitis.epankelma != ''}
+				<span class="inline-flex items-baseline">
 					<Icon src={Briefcase} class="w-5 h-5 mr-1 mt-5" />
 					<span>
-						{mathitis.epankelma} -
+						{mathitis.epankelma}
 					</span>
-
+					{#if mathitis.tilefonoE != undefined}
+					<Icon src={MinusSmall} class="w-5 h-4  mx-1 mt-5" />
 					<Icon src={Phone} class="w-5 h-5 mx-1 mt-5" />
 					<a href="tel:{mathitis.tilefonoE}"
-						>{mathitis.tilefonoE != undefined ? +mathitis.tilefonoE : ''}</a
+						>{mathitis.tilefonoE}</a
 					>
-				{:else if mathitis.epankelma == '' && mathitis.tilefonoE != undefined}
+					
+					{/if}
+				</span>
+			{:else if mathitis.epankelma == '' && mathitis.tilefonoE != undefined}
+				<span class="inline-flex items-baseline">
 					<Icon src={Briefcase} class="w-5 h-5 mr-1 mt-5" />
 					<a href="tel:{mathitis.tilefonoE}">
 						{mathitis.tilefonoE != undefined ? +mathitis.tilefonoE : ''}</a
 					>
-				{/if}
-			</span>
+				</span>
+			{/if}
 		</div>
 		<div>
 			{#if mathitis.genethliaRaw != ''}
