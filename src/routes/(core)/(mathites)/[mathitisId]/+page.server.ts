@@ -65,6 +65,6 @@ export const actions = {
 
     mathitisDelete: async ({ locals, params }: any) => {
         await locals.pb.collection('mathites').delete(params.mathitisId);
-        throw redirect(307, "/");
+        throw redirect(303, "/");
     }
 }

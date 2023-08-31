@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { modalStore } from '@skeletonlabs/skeleton';
 	import { enhance } from '$app/forms';
+	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import MathitisForm from '$lib/components/Forms/Mathitis.svelte';
 	import {
 		Icon,
@@ -12,7 +14,7 @@
 		PencilSquare,
 		Trophy,
 		Banknotes,
-        XCircle,
+		XCircle
 	} from 'svelte-hero-icons';
 
 	export let data: any;
@@ -37,6 +39,24 @@
 			MathitisEdit = false;
 		}
 	}
+
+	const modal: ModalSettings = {
+		type: 'confirm',
+		title: 'Διαγραφή',
+		buttonTextCancel: 'Ακύρωση',
+		buttonTextConfirm: 'Διαγραφή',
+		body: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε τον χρήστη για πάντα?',
+		response: (r: boolean) => {
+			if (r == true) {
+				var mathitisDeleteForm = <HTMLFormElement>document.getElementById('mathitisDeleteForm');
+				mathitisDeleteForm.submit();
+			}
+		}
+	};
+
+	function deleteModal(): void {
+		modalStore.trigger(modal);
+	}
 </script>
 
 <button
@@ -54,13 +74,8 @@
 
 <div id="MathitisForm" class="invisible">
 	<MathitisForm {data} />
-
-	<form id="mathitisDelete" action="?/mathitisDelete" method="POST" use:enhance>
-		<button
-			type="submit"
-			id="MathitisEditBtn"
-			class="btn variant-filled-error float-left mt-10"
-			on:click={editMathitis}><Icon src={XCircle} class="w-6 h-6" /> Διαγραφή</button
-		>
-	</form>
+	<button on:click={deleteModal} class="btn variant-filled-error float-left mt-10">
+		<Icon src={XCircle} class="w-6 h-6" /> Διαγραφή</button
+	>
+	<form id="mathitisDeleteForm" action="?/mathitisDelete" method="POST" />
 </div>

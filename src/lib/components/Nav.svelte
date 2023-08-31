@@ -39,7 +39,6 @@
 	function logoutModal(): void {
 		modalStore.trigger(modal);
 	}
-	let test = '';
 	const navigation = [
 		{
 			id: 'arxiki',
