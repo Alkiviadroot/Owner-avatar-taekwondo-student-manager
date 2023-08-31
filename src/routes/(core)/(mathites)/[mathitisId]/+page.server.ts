@@ -2,6 +2,8 @@ import { redirect, fail } from '@sveltejs/kit';
 import { superValidate } from "sveltekit-superforms/server"
 import { mathitis } from '$lib/schemas';
 import { serializeNonPOJOs } from '$lib/utils.js';
+import moment from 'moment';
+
 
 export const load = async ({ locals, params }: any,) => {
     let profile: any = [];
@@ -20,8 +22,12 @@ export const load = async ({ locals, params }: any,) => {
     if (profile.tilefonoE == 0) profile.tilefonoE = undefined;
     if (profile.email == '') profile.email = undefined;
     if (profile.fotografia == '') profile.fotografia = undefined;
-    const mathitisForm = await superValidate(profile, mathitis);
+    profile.genethliaRaw=profile.genethlia
+    profile.enarksiRaw=profile.enarksi
+    profile.genethlia=moment(profile.genethlia).format('YYYY-MM-DD')
+    profile.enarksi=moment(profile.enarksi).format('YYYY-MM-DD')
 
+    const mathitisForm = await superValidate(profile, mathitis);
     return { profile, mathitisForm }
 }
 

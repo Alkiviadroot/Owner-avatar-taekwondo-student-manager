@@ -1,39 +1,38 @@
 <script lang="ts">
 	import { modalStore } from '@skeletonlabs/skeleton';
-	import { enhance } from '$app/forms';
+	import moment from 'moment';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import MathitisForm from '$lib/components/Forms/Mathitis.svelte';
 	import {
 		Icon,
-		Phone,
-		Home,
-		UserCircle,
-		Document,
-		Heart,
-		UserGroup,
 		PencilSquare,
-		Trophy,
-		Banknotes,
-		XCircle
+		XCircle,
+		MapPin,
+		Briefcase,
+		Phone,
+		Cake,
+		Envelope,
+		Calendar
 	} from 'svelte-hero-icons';
 
 	export let data: any;
-
+	let mathitis = data.profile;
 	let MathitisEdit = false;
 	function editMathitis(): void {
 		var MathitisData = <HTMLFormElement>document.getElementById('MathitisData');
 		var MathitisForm = <HTMLFormElement>document.getElementById('MathitisForm');
 		var MathitisEditBtn = <HTMLFormElement>document.getElementById('MathitisEditBtn');
+		
 
 		if (!MathitisEdit) {
-			MathitisData.classList.add('invisible');
-			MathitisForm.classList.remove('invisible');
+			MathitisData.setAttribute('hidden', '');
+			MathitisForm.removeAttribute('hidden');
 			MathitisEditBtn.classList.add('variant-filled-success');
 			MathitisEditBtn.classList.remove('variant-ghost-success');
 			MathitisEdit = true;
 		} else {
-			MathitisData.classList.remove('invisible');
-			MathitisForm.classList.add('invisible');
+			MathitisData.removeAttribute('hidden');
+			MathitisForm.setAttribute('hidden', '');
 			MathitisEditBtn.classList.remove('variant-filled-success');
 			MathitisEditBtn.classList.add('variant-ghost-success');
 			MathitisEdit = false;
@@ -66,16 +65,78 @@
 	on:click={editMathitis}><Icon src={PencilSquare} class="w-6 h-6" /></button
 >
 
-<div id="MathitisData">
-	<p>sdfsdf</p>
-	<p>sdfsdfsdfdsf</p>
-	<p>sdfsdscbxkchsdfh</p>
-</div>
+<div class="flex justify-center">
+	<div id="MathitisData" class="mt-5">
+		<div>
+			<span class="inline-flex items-baseline mb-2">
+				<Icon src={MapPin} class="w-5 h-5 mr-1" />
+				<span>
+					{mathitis.diefthinsi != '' ? mathitis.diefthinsi : 'Mη διαθέσιμη διεύθυνση'}
+					{mathitis.tk != undefined ? ' / ' + mathitis.tk : ''}
+					{mathitis.perioxi != '' ? ' , ' + mathitis.perioxi : ''}
+				</span>
+			</span>
+		</div>
 
-<div id="MathitisForm" class="invisible">
-	<MathitisForm {data} />
-	<button on:click={deleteModal} class="btn variant-filled-error float-left mt-10">
-		<Icon src={XCircle} class="w-6 h-6" /> Διαγραφή</button
-	>
-	<form id="mathitisDeleteForm" action="?/mathitisDelete" method="POST" />
+		<div>
+			<span class="inline-flex items-baseline mb-2">
+				{#if mathitis.epankelma != ''}
+					<Icon src={Briefcase} class="w-5 h-5 mr-1 mt-5" />
+					<span>
+						{mathitis.epankelma} -
+					</span>
+
+					<Icon src={Phone} class="w-5 h-5 mx-1 mt-5" />
+					<a href="tel:{mathitis.tilefonoE}"
+						>{mathitis.tilefonoE != undefined ? +mathitis.tilefonoE : ''}</a
+					>
+				{:else if mathitis.epankelma == '' && mathitis.tilefonoE != undefined}
+					<Icon src={Briefcase} class="w-5 h-5 mr-1 mt-5" />
+					<a href="tel:{mathitis.tilefonoE}">
+						{mathitis.tilefonoE != undefined ? +mathitis.tilefonoE : ''}</a
+					>
+				{/if}
+			</span>
+		</div>
+		<div>
+			{#if mathitis.genethliaRaw != ''}
+				<span class="inline-flex items-baseline">
+					<Icon src={Cake} class="w-5 h-5 mr-1 mt-5" />
+					<span>
+						{moment(mathitis.genethliaRaw).format('DD/MM/YYYY')}
+					</span>
+				</span>
+			{/if}
+		</div>
+		<div>
+			{#if mathitis.email != undefined}
+				<span class="inline-flex items-baseline">
+					<Icon src={Envelope} class="w-5 h-5 mr-1 mt-5" />
+					<a href="mailto: {mathitis.email}">
+						<span>
+							{mathitis.email}
+						</span>
+					</a>
+				</span>
+			{/if}
+		</div>
+		<div>
+			{#if mathitis.enarksiRaw != ''}
+				<span class="inline-flex items-baseline">
+					<Icon src={Calendar} class="w-5 h-5 mr-1 mt-5" />
+					<span>
+						{moment(mathitis.enarksiRaw).format('DD/MM/YYYY')}
+					</span>
+				</span>
+			{/if}
+		</div>
+	</div>
+
+	<div id="MathitisForm" hidden>
+		<MathitisForm {data} />
+		<button on:click={deleteModal} class="btn variant-filled-error float-left mt-10">
+			<Icon src={XCircle} class="w-6 h-6" /> Διαγραφή</button
+		>
+		<form id="mathitisDeleteForm" action="?/mathitisDelete" method="POST" />
+	</div>
 </div>
