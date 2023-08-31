@@ -8,13 +8,13 @@
 	export let data;
 	let idNum: string;
 	let energos: boolean;
-	if ($page.url.pathname == '/new') energos = true;
 	const { form, errors, constraints, delayed } = superForm(data.mathitisForm, {
 		taintedMessage: 'Are you sure you want leave??',
 		multipleSubmits: 'prevent',
 		validators: mathitis
 	});
 
+	if ($form.energos || $page.url.pathname == '/new') energos = true;
 	function onomaChange(): void {
 		if ($form.onoma != undefined) {
 			idNum = generateString(15);
