@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Mathitis from '$lib/components/Profile/Mathitis.svelte';
+	import Provlimata from '$lib/components/Profile/Provlimata.svelte';
 
 
 	import { Avatar, TabGroup, Tab } from '@skeletonlabs/skeleton';
@@ -91,7 +92,7 @@
 		{#if tabSet === 0}
 		<Mathitis {data}/>
 		{:else if tabSet === 1}
-			(tab panel 2 contents)
+			<Provlimata {data}/>
 		{:else if tabSet === 2}
 			(tab panel 3 contents)
 		{:else if tabSet === 3}

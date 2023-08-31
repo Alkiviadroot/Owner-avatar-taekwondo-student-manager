@@ -26,3 +26,7 @@ export const addHours=(date:Date, hours:number) =>{
 	date.setTime(date.getTime() + hours * 60 * 60 * 1000);
 	return date;
   }
+
+export const getPosition=(string: string, subString: string, index: number) =>{
+	return string.split(subString, index).join(subString).length;
+}

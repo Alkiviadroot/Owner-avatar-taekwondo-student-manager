@@ -13,7 +13,7 @@
 		Cake,
 		Envelope,
 		Calendar,
-		MinusSmall,
+		MinusSmall
 	} from 'svelte-hero-icons';
 
 	export let data: any;
@@ -58,12 +58,14 @@
 	}
 </script>
 
-<button
-	type="button"
-	id="MathitisEditBtn"
-	class="btn variant-ghost-success rounded-full float-right"
-	on:click={editMathitis}><Icon src={PencilSquare} class="w-6 h-6" /></button
->
+<div class="flex justify-end">
+	<button
+		type="button"
+		id="MathitisEditBtn"
+		class="btn variant-ghost-success rounded-full"
+		on:click={editMathitis}><Icon src={PencilSquare} class="w-6 h-6" /></button
+	>
+</div>
 
 <div class="flex justify-center">
 	<div id="MathitisData">
@@ -86,12 +88,9 @@
 						{mathitis.epankelma}
 					</span>
 					{#if mathitis.tilefonoE != undefined}
-					<Icon src={MinusSmall} class="w-5 h-4  mx-1 mt-5" />
-					<Icon src={Phone} class="w-5 h-5 mx-1 mt-5" />
-					<a href="tel:{mathitis.tilefonoE}"
-						>{mathitis.tilefonoE}</a
-					>
-					
+						<Icon src={MinusSmall} class="w-5 h-4  mx-1 mt-5" />
+						<Icon src={Phone} class="w-5 h-5 mx-1 mt-5" />
+						<a href="tel:{mathitis.tilefonoE}">{mathitis.tilefonoE}</a>
 					{/if}
 				</span>
 			{:else if mathitis.epankelma == '' && mathitis.tilefonoE != undefined}
@@ -136,12 +135,12 @@
 			{/if}
 		</div>
 	</div>
+</div>
 
-	<div id="MathitisForm" hidden>
-		<MathitisForm {data} />
-		<button on:click={deleteModal} class="btn variant-filled-error float-left mt-10">
-			<Icon src={XCircle} class="w-6 h-6" /> Διαγραφή</button
-		>
-		<form id="mathitisDeleteForm" action="?/mathitisDelete" method="POST" />
-	</div>
+<div id="MathitisForm" hidden>
+	<MathitisForm {data} />
+	<button on:click={deleteModal} class="btn variant-filled-error float-left mt-10">
+		<Icon src={XCircle} class="w-6 h-6" /> Διαγραφή</button
+	>
+	<form id="mathitisDeleteForm" action="?/mathitisDelete" method="POST" />
 </div>

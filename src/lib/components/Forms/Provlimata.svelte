@@ -2,76 +2,65 @@
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { provlimata } from '$lib/schemas';
+	import { page } from '$app/stores';
+	import { getPosition } from '$lib/utils';
 
 	export let data;
-	let kardiaka: boolean = false;
-	let asthma: boolean = false;
-	let lipothimia: boolean = false;
-	let allo: boolean = false;
+	let kardiaka: boolean;
+	let asthma: boolean;
+	let lipothimia: boolean;
+	let allo: boolean;
 
-	const { form, errors, enhance, constraints } = superForm(data.provlimataForm, {
+	const { form, errors } = superForm(data.provlimataForm, {
 		taintedMessage: 'Are you sure you want leave??',
 		multipleSubmits: 'prevent',
 		resetForm: true,
 		validators: provlimata
 	});
 
-	$form.kardiaka = 'false';
-	$form.asthma = 'false';
-	$form.lipothimia = 'false';
-	$form.allo = 'false';
+	if ($page.url.pathname.substring(0, getPosition($page.url.pathname, '/', 2)) == '/new') {
+		kardiaka = false;
+		asthma = false;
+		lipothimia = false;
+		allo = false;
+		$form.kardiaka = 'false';
+		$form.asthma = 'false';
+		$form.lipothimia = 'false';
+		$form.allo = 'false';
+	} else {
+		if ($form.kardiaka) kardiaka = true;
+		if ($form.asthma) asthma = true;
+		if ($form.lipothimia) lipothimia = true;
+		if ($form.allo) allo = true;
+	}
 
 	function kardiakaChange(): void {
 		kardiaka = !kardiaka;
-		var kardikaText = <HTMLFormElement>document.getElementById('kardiakaL');
-		if (kardiaka) {
-			$form.kardiaka = 'true';
-			kardikaText.removeAttribute('hidden');
-		} else {
-			$form.kardiaka = 'false';
-			kardikaText.setAttribute('hidden', '');
-		}
+		if (kardiaka) $form.kardiaka = 'true';
+		else $form.kardiaka = 'false';
 	}
 
 	function asthmaChange(): void {
 		asthma = !asthma;
-		var asthmaText = <HTMLFormElement>document.getElementById('asthmaL');
-		if (asthma) {
-			$form.asthma = 'true';
-			asthmaText.removeAttribute('hidden');
-		} else {
-			$form.asthma = 'fale';
-			asthmaText.setAttribute('hidden', '');
-		}
+		if (asthma) $form.asthma = 'true';
+		else $form.asthma = 'fale';
 	}
 
 	function lipothimiaChange(): void {
 		lipothimia = !lipothimia;
-		var lipothimiaText = <HTMLFormElement>document.getElementById('lipothimiaL');
-		if (lipothimia) {
-			$form.lipothimia = 'true';
-			lipothimiaText.removeAttribute('hidden');
-		} else {
-			$form.lipothimia = 'false';
-			lipothimiaText.setAttribute('hidden', '');
-		}
+		if (lipothimia) $form.lipothimia = 'true';
+		else $form.lipothimia = 'false';
 	}
 
 	function alloChange(): void {
 		allo = !allo;
-		var alloText = <HTMLFormElement>document.getElementById('alloL');
-		if (allo) {
-			$form.allo = 'true';
-			alloText.removeAttribute('hidden');
-		} else {
-			$form.allo = 'false';
-			alloText.setAttribute('hidden', '');
-		}
+		if (allo) $form.allo = 'true';
+		else $form.allo = 'false';
 	}
 </script>
 
-<form id="provlimataForm" action="?/provlimata" method="POST" use:enhance>
-    <h1 class="text-3xl font-bold mb-10">Προβλήματα</h1>
+<form id="provlimataForm" action="?/provlimata" method="POST">
+	<h1 class="text-3xl font-bold mb-10">Προβλήματα</h1>
 
 	<div class="mb-5">
 		<SlideToggle
@@ -90,9 +79,8 @@
 		<textarea
 			id="kardiakaL"
 			name="kardiakaL"
-			class="textarea"
+			class="textarea {kardiaka ? '' : 'invisible h-0'}"
 			rows="3"
-			hidden
 			bind:value={$form.kardiakaL}
 		/>
 
@@ -115,9 +103,8 @@
 		<textarea
 			id="asthmaL"
 			name="asthmaL"
-			class="textarea"
+			class="textarea {asthma ? '' : 'invisible h-0'}"
 			rows="3"
-			hidden
 			bind:value={$form.asthmaL}
 		/>
 
@@ -142,9 +129,8 @@
 		<textarea
 			id="lipothimiaL"
 			name="lipothimiaL"
-			class="textarea"
+			class="textarea {lipothimia ? '' : 'invisible h-0'}"
 			rows="3"
-			hidden
 			bind:value={$form.lipothimiaL}
 		/>
 
@@ -170,7 +156,13 @@
 				<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.alloL}</small>
 			{/if}
 		</SlideToggle>
-		<textarea id="alloL" name="alloL" class="textarea" rows="3" hidden bind:value={$form.alloL} />
+		<textarea
+			id="alloL"
+			name="alloL"
+			class="textarea {allo ? '' : 'invisible h-0'}"
+			rows="3"
+			bind:value={$form.alloL}
+		/>
 
 		<input hidden id="allo" name="allo" type="text" value={allo ? 'true' : 'false'} />
 	</div>

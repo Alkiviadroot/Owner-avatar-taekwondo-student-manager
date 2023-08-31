@@ -1,20 +1,22 @@
 import { redirect, fail } from '@sveltejs/kit';
 import { superValidate } from "sveltekit-superforms/server"
-import { mathitis } from '$lib/schemas';
+import { mathitis, provlimata } from '$lib/schemas';
 import { serializeNonPOJOs } from '$lib/utils.js';
 import moment from 'moment';
 
+let provlimataNotAvailable = false;
+let provlimataId: string;
 
 export const load = async ({ locals, params }: any,) => {
+    const fileToken = await locals.pb.files.getToken();
+    const mathitisId = params.mathitisId;
+    // MathitisForm
     let profile: any = [];
     try {
-        profile = serializeNonPOJOs(await locals.pb.collection('mathites').getOne(params.mathitisId))
+        profile = serializeNonPOJOs(await locals.pb.collection('mathites').getOne(mathitisId))
     } catch {
         throw redirect(307, "/")
     }
-
-    const fileToken = await locals.pb.files.getToken();
-    profile.fotografiaView = locals.pb.files.getUrl(profile, profile.fotografia, { 'token': fileToken });
 
     if (profile.tk == 0) profile.tk = undefined;
     if (profile.kinito == 0) profile.kinito = undefined;
@@ -22,13 +24,26 @@ export const load = async ({ locals, params }: any,) => {
     if (profile.tilefonoE == 0) profile.tilefonoE = undefined;
     if (profile.email == '') profile.email = undefined;
     if (profile.fotografia == '') profile.fotografia = undefined;
-    profile.genethliaRaw=profile.genethlia
-    profile.enarksiRaw=profile.enarksi
-    profile.genethlia=moment(profile.genethlia).format('YYYY-MM-DD')
-    profile.enarksi=moment(profile.enarksi).format('YYYY-MM-DD')
+    profile.genethliaRaw = profile.genethlia;
+    profile.enarksiRaw = profile.enarksi;
+    profile.genethlia = moment(profile.genethlia).format('YYYY-MM-DD');
+    profile.enarksi = moment(profile.enarksi).format('YYYY-MM-DD');
+    profile.fotografiaView = locals.pb.files.getUrl(profile, profile.fotografia, { 'token': fileToken });
 
     const mathitisForm = await superValidate(profile, mathitis);
-    return { profile, mathitisForm }
+
+    // ProvlimataForm
+    let provlimataR: any = [];
+    try {
+        provlimataR = serializeNonPOJOs(await locals.pb.collection('provlimata').getFirstListItem('mathitis="' + mathitisId + '"'));
+        provlimataId=provlimataR.id;
+        provlimataNotAvailable = false;
+    } catch {
+        provlimataNotAvailable = true;
+    }
+    const provlimataForm = await superValidate(provlimataR, provlimata);
+
+    return { profile, mathitisForm, provlimataForm, provlimataR }
 }
 
 export const actions = {
@@ -72,5 +87,31 @@ export const actions = {
     mathitisDelete: async ({ locals, params }: any) => {
         await locals.pb.collection('mathites').delete(params.mathitisId);
         throw redirect(303, "/");
+    },
+
+    provlimata: async ({ request, locals, params }: any) => {
+        const form = await request.formData();
+        const provlimataForm = await superValidate(form, provlimata);
+
+        if (!provlimataForm.valid) {
+            return fail(400, {
+                provlimataForm
+            })
+        }
+
+        provlimataForm.data.mathitis = params.mathitisId
+        if (provlimataForm.data.kardiaka == 'false')
+            provlimataForm.data.kardiakaL = ""
+        if (provlimataForm.data.asthma == 'false')
+            provlimataForm.data.asthmaL = ""
+        if (provlimataForm.data.lipothimia == 'false')
+            provlimataForm.data.lipothimiaL = ""
+        if (provlimataForm.data.allo == 'false')
+            provlimataForm.data.alloL = ""
+
+        if (provlimataNotAvailable)
+            await locals.pb.collection('provlimata').create(provlimataForm.data);
+        else
+            await locals.pb.collection('provlimata').update(provlimataId, provlimataForm.data);
     }
 }

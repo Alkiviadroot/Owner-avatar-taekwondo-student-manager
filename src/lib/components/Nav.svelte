@@ -10,13 +10,11 @@
 		CalendarDays,
 		SquaresPlus
 	} from 'svelte-hero-icons';
+	import { getPosition } from '$lib/utils';
 
 	export let initials: string;
 	export let avatar: string;
 
-	function getPosition(string: string, subString: string, index: number) {
-		return string.split(subString, index).join(subString).length;
-	}
 
 	function drawerClose(): void {
 		drawerStore.close();
@@ -81,10 +79,7 @@
 					id={navItem.id}
 					href={navItem.href}
 					on:click={drawerClose}
-					class="font-medium {$page.url.pathname.substring(
-						0,
-						getPosition($page.url.pathname, '/', 2)
-					) === navItem.href
+					class="font-medium {$page.url.pathname.substring(0,getPosition($page.url.pathname, '/', 2)) === navItem.href
 						? '!bg-primary-500'
 						: ''}"
 				>
