@@ -55,6 +55,6 @@ export const actions = {
 		}
 
 		await locals.pb.collection('mathites').create(formData);
-		throw redirect(307, "/new/" + mathitisForm.data.id + "/provlimata")
+		throw redirect(303, "/new/" + mathitisForm.data.id + "/provlimata")
 	}
 }

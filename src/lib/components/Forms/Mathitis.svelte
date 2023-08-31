@@ -12,7 +12,6 @@
 	const { form, errors, constraints, delayed } = superForm(data.mathitisForm, {
 		taintedMessage: 'Are you sure you want leave??',
 		multipleSubmits: 'prevent',
-		resetForm: true,
 		validators: mathitis
 	});
 
