@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { SlideToggle, ProgressRadial } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
+	import { Icon, XCircle } from 'svelte-hero-icons';
 	import { mathitis } from '$lib/schemas';
 	import { page } from '$app/stores';
 	import { generateString } from '$lib/utils';
@@ -35,6 +36,17 @@
 		if ($form.kinito == null) $form.kinito = undefined;
 		if ($form.tilefonoS == null) $form.tilefonoS = undefined;
 		if ($form.tilefonoE == null) $form.tilefonoE = undefined;
+	}
+
+	function profileRemove(): void {
+		const input = <HTMLFormElement>document.getElementById('fotografia');
+		try {
+			input.value = '';
+			if (input.value) {
+				input.type = 'text';
+				input.type = 'file';
+			}
+		} catch (e) {}
 	}
 </script>
 
@@ -235,7 +247,9 @@
 				<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.fotografia}</small
 				>
 			{/if}
-			<input
+			
+			<div class="input-group input-group-divider grid-cols-[1fr_auto]">
+				<input
 				class="input"
 				id="fotografia"
 				name="fotografia"
@@ -243,6 +257,9 @@
 				bind:value={$form.fotografia}
 				{...$constraints.fotografia}
 			/>
+				<button type="button" class="btn variant-filled-error" on:click={profileRemove}
+					><Icon src={XCircle} class="w-5 h-5" /></button
+				>
 		</label>
 
 		<!-- --- -->

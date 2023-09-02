@@ -49,10 +49,7 @@
 		} catch (e) {}
 	}
 
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 </script>
-
-<SuperDebug data={$form} />
 
 <form id="deltiaForm" action="?/deltia" method="POST" enctype="multipart/form-data" >
 	<h1 class="text-3xl font-bold mb-4">Δελτία</h1>
