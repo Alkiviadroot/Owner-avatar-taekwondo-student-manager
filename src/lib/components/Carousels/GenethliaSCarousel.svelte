@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon, ArrowLeft, ArrowRight } from 'svelte-hero-icons';
-	import MathitisCard from '$lib/components/MathitisCard.svelte';
+	import MathitisCard from '$lib/components/Cards/MathitisCard.svelte';
 	let elemCarousel: HTMLDivElement;
 
 	export let genethliaS: any;

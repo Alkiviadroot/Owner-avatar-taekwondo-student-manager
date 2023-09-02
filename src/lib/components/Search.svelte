@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createSearchStore, searchHandler } from '$lib/stores/search';
-	import MathitisCard from '$lib/components/MathitisCard.svelte';
+	import MathitisCard from '$lib/components/Cards/MathitisCard.svelte';
 	import { onDestroy } from 'svelte';
 
 	export let data;
