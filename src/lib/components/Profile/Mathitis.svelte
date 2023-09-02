@@ -70,8 +70,9 @@
 <div class="flex justify-center">
 	<div id="MathitisData">
 		<div>
+			<p class="ml-6 italic text-primary-500">Διεύθυνση</p>
 			<span class="inline-flex items-baseline">
-				<Icon src={MapPin} class="w-5 h-5 mr-1 mt-5" />
+				<Icon src={MapPin} class="w-5 h-5 mr-1 " />
 				<span>
 					{mathitis.diefthinsi != '' ? mathitis.diefthinsi : 'Mη διαθέσιμη διεύθυνση'}
 					{mathitis.tk != undefined ? ' / ' + mathitis.tk : ''}
@@ -82,20 +83,22 @@
 
 		<div>
 			{#if mathitis.epankelma != ''}
+			<p class="ml-6 italic mt-7 text-primary-500">Επάγγελμα</p>
 				<span class="inline-flex items-baseline">
-					<Icon src={Briefcase} class="w-5 h-5 mr-1 mt-5" />
+					<Icon src={Briefcase} class="w-5 h-5 mr-1 " />
 					<span>
 						{mathitis.epankelma}
 					</span>
 					{#if mathitis.tilefonoE != undefined}
-						<Icon src={MinusSmall} class="w-5 h-4  mx-1 mt-5" />
-						<Icon src={Phone} class="w-5 h-5 mx-1 mt-5" />
+						<Icon src={MinusSmall} class="w-5 h-4  mx-1" />
+						<Icon src={Phone} class="w-5 h-5 mx-1" />
 						<a href="tel:{mathitis.tilefonoE}">{mathitis.tilefonoE}</a>
 					{/if}
 				</span>
 			{:else if mathitis.epankelma == '' && mathitis.tilefonoE != undefined}
+			<p class="ml-6 italic mt-7 text-primary-500">Τηλέφωνο Επάγγελματος</p>
 				<span class="inline-flex items-baseline">
-					<Icon src={Briefcase} class="w-5 h-5 mr-1 mt-5" />
+					<Icon src={Briefcase} class="w-5 h-5 mr-1" />
 					<a href="tel:{mathitis.tilefonoE}">
 						{mathitis.tilefonoE != undefined ? +mathitis.tilefonoE : ''}</a
 					>
@@ -104,8 +107,9 @@
 		</div>
 		<div>
 			{#if mathitis.genethliaRaw != ''}
+			<p class="ml-6 italic mt-7 text-primary-500">Γενέθλια</p>
 				<span class="inline-flex items-baseline">
-					<Icon src={Cake} class="w-5 h-5 mr-1 mt-5" />
+					<Icon src={Cake} class="w-5 h-5 mr-1" />
 					<span>
 						{moment(mathitis.genethliaRaw).format('DD/MM/YYYY')}
 					</span>
@@ -114,8 +118,9 @@
 		</div>
 		<div>
 			{#if mathitis.email != undefined}
+			<p class="ml-6 italic mt-7 text-primary-500">Email</p>
 				<span class="inline-flex items-baseline">
-					<Icon src={Envelope} class="w-5 h-5 mr-1 mt-5" />
+					<Icon src={Envelope} class="w-5 h-5 mr-1" />
 					<a href="mailto: {mathitis.email}">
 						<span>
 							{mathitis.email}
@@ -126,8 +131,9 @@
 		</div>
 		<div>
 			{#if mathitis.enarksiRaw != ''}
+			<p class="ml-6 italic mt-7 text-primary-500">Έναρξη Μαθημάτων</p>
 				<span class="inline-flex items-baseline">
-					<Icon src={Calendar} class="w-5 h-5 mr-1 mt-5" />
+					<Icon src={Calendar} class="w-5 h-5 mr-1" />
 					<span>
 						{moment(mathitis.enarksiRaw).format('DD/MM/YYYY')}
 					</span>

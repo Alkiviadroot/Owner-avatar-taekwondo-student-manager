@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Mathitis from '$lib/components/Profile/Mathitis.svelte';
 	import Provlimata from '$lib/components/Profile/Provlimata.svelte';
-
+	import Deltia from '$lib/components/Profile/Deltia.svelte';
 
 	import { Avatar, TabGroup, Tab } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
@@ -23,7 +23,7 @@
 		if (screenWidth <= 500) phone = true;
 	});
 
-	export let data:any;
+	export let data: any;
 	const mathitis = data.profile;
 	let tabSet: number = 0;
 </script>
@@ -55,7 +55,7 @@
 			{/if}
 		</h1>
 		<h1>
-			{#if mathitis.tilefonoS != '0'  && mathitis.tilefonoS != undefined}
+			{#if mathitis.tilefonoS != '0' && mathitis.tilefonoS != undefined}
 				<a href="tel:{mathitis.tilefonoS}">
 					<span class="inline-flex items-baseline mb-2">
 						<Icon src={Home} class="w-5 h-5 mr-1" />
@@ -90,11 +90,11 @@
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
-		<Mathitis {data}/>
+			<Mathitis {data} />
 		{:else if tabSet === 1}
-			<Provlimata {data}/>
+			<Provlimata {data} />
 		{:else if tabSet === 2}
-			(tab panel 3 contents)
+			<Deltia {data} />
 		{:else if tabSet === 3}
 			(tab panel 4 contents)
 		{:else if tabSet === 4}

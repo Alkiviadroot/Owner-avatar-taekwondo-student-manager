@@ -37,9 +37,9 @@ export const actions = {
         try {
             await locals.pb.collection('deltia').create(formData);
         } catch {
-            throw redirect(307, "/" + params.mathitisId)
+            throw redirect(303, "/" + params.mathitisId)
         }
-        throw redirect(307, "/new/" + params.mathitisId + "/epafes")
+        throw redirect(303, "/new/" + params.mathitisId + "/epafes")
 
     }
 }

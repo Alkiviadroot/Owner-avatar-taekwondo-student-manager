@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Nav from '$lib/components/Nav.svelte';
-	import Logo from '$lib/images/logo.png'; 
+	import Logo from '$lib/images/logo.png';
 	import { getImageURL } from '$lib/utils';
 	import {
 		Modal,
@@ -15,13 +15,15 @@
 	}
 
 	export let data;
-	let avatar=getImageURL(data.user?.collectionId, data.user?.id, data.user?.avatar);
-	let initials=data?.user?.name.split(" ").map((n:string)=>n[0]).join("");
-	
+	let avatar = getImageURL(data.user?.collectionId, data.user?.id, data.user?.avatar);
+	let initials = data?.user?.name
+		.split(' ')
+		.map((n: string) => n[0])
+		.join('');
 </script>
 
 <Drawer>
-	<Nav {initials} {avatar}/>
+	<Nav {initials} {avatar} />
 </Drawer>
 
 <Modal />
@@ -41,7 +43,9 @@
 						</span>
 					</button>
 					<div class="w-10">
-						<img src={Logo} alt="Logo" />
+						<a href="/">
+							<img src={Logo} alt="Logo" />
+						</a>
 					</div>
 				</div>
 			</svelte:fragment>
@@ -51,10 +55,9 @@
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
-	<svelte:fragment slot="sidebarLeft"><Nav {initials} {avatar}/></svelte:fragment>
+	<svelte:fragment slot="sidebarLeft"><Nav {initials} {avatar} /></svelte:fragment>
 	<div id="phonePadding" class="container max-auto p-10">
 		<slot />
 	</div>
-	<svelte:fragment slot="pageFooter" >		
-	</svelte:fragment>
+	<svelte:fragment slot="pageFooter" />
 </AppShell>

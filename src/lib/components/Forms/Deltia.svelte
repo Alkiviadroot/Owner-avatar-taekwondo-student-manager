@@ -1,20 +1,27 @@
 <script lang="ts">
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
+	import { getPosition } from '$lib/utils';
+	import { page } from '$app/stores';
 	import { deltia } from '$lib/schemas';
 
 	export let data;
 
-	let fotografiaAdia = false;
+	let fotografiaAdia : boolean;
 
-	const { form, errors, enhance, constraints } = superForm(data.deltiaForm, {
+	const { form, errors, constraints } = superForm(data.deltiaForm, {
 		taintedMessage: 'Are you sure you want leave??',
 		multipleSubmits: 'prevent',
-		resetForm: true,
 		validators: deltia
 	});
+	if ($page.url.pathname.substring(0, getPosition($page.url.pathname, '/', 2)) == '/new') {
+		fotografiaAdia=false
+		$form.fotografia_adia = 'false';
+	}else{
+		if ($form.fotografia_adia) fotografiaAdia = true;
 
-	$form.fotografia_adia = 'false';
+	}
+
 
 	function fotografiaAdiaC(): void {
 		fotografiaAdia = !fotografiaAdia;
@@ -32,7 +39,7 @@
 
 </script>
 
-<form id="deltiaForm" action="?/deltia" method="POST"  enctype="multipart/form-data" use:enhance>
+<form id="deltiaForm" action="?/deltia" method="POST"  enctype="multipart/form-data">
 	<h1 class="text-3xl font-bold mb-4">Δελτία</h1>
 
 	<div class="mb-3">
@@ -51,7 +58,7 @@
 	</div>
 
 	<div class="mb-3">
-		<span>Νούμερο Gal</span>
+		<span>Αριθμός Gal</span>
 		{#if $errors.gal_Number}
 			<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.gal_Number}</small>
 		{/if}
@@ -115,7 +122,7 @@
 		value={fotografiaAdia ? 'true' : 'false'}
 	/>
 
-	<button class="btn variant-filled-success float-right mt-10" id="submitDeltia" type="submit"
+	<button class="btn variant-filled-success float-right mt-10 mb-7" id="submitDeltia" type="submit"
 		>Αποθήκευση →</button
 	>
 </form>
