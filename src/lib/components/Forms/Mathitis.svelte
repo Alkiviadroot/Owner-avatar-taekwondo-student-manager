@@ -63,7 +63,6 @@
 				class="input"
 				id="onoma"
 				name="onoma"
-				title="Όνομα"
 				type="text"
 				on:change={onomaChange}
 				bind:value={$form.onoma}
@@ -80,7 +79,6 @@
 				class="input"
 				id="epitheto"
 				name="epitheto"
-				title="Επίθετο"
 				type="text"
 				bind:value={$form.epitheto}
 				{...$constraints.epitheto}
@@ -98,7 +96,6 @@
 				class="input"
 				id="diefthinsi"
 				name="diefthinsi"
-				title="Διεύθυνση"
 				type="text"
 				bind:value={$form.diefthinsi}
 				{...$constraints.diefthinsi}
@@ -114,7 +111,6 @@
 				class="input"
 				id="tk"
 				name="tk"
-				title="Ταχυδρομικός Κώδικας"
 				type="number"
 				on:change={numberC}
 				bind:value={$form.tk}
@@ -132,7 +128,6 @@
 				class="input"
 				id="perioxi"
 				name="perioxi"
-				title="Περιοχή"
 				type="text"
 				bind:value={$form.perioxi}
 				{...$constraints.perioxi}
@@ -148,7 +143,6 @@
 				class="input"
 				id="kinito"
 				name="kinito"
-				title="Κινιτό"
 				type="number"
 				on:change={numberC}
 				bind:value={$form.kinito}
@@ -166,7 +160,6 @@
 				class="input"
 				id="tilefonoS"
 				name="tilefonoS"
-				title="Τηλέφωνο Σπιτιού"
 				type="number"
 				on:change={numberC}
 				bind:value={$form.tilefonoS}
@@ -183,7 +176,6 @@
 				class="input"
 				id="tilefonoE"
 				name="tilefonoE"
-				title="Τηλέφωνο Επαγγέλματος"
 				type="number"
 				on:change={numberC}
 				bind:value={$form.tilefonoE}
@@ -201,7 +193,6 @@
 				class="input"
 				id="epankelma"
 				name="epankelma"
-				title="Επάγγελμα"
 				type="text"
 				bind:value={$form.epankelma}
 				{...$constraints.epankelma}
@@ -217,7 +208,6 @@
 				class="input"
 				id="genethlia"
 				name="genethlia"
-				title="Γενέθλια"
 				type="date"
 				bind:value={$form.genethlia}
 				{...$constraints.genethlia}
@@ -234,7 +224,6 @@
 				class="input"
 				id="enarksi"
 				name="enarksi"
-				title="Έναρκση Μαθημάτων"
 				type="date"
 				bind:value={$form.enarksi}
 				{...$constraints.enarksi}
@@ -272,7 +261,6 @@
 				class="input"
 				id="email"
 				name="email"
-				title="Γενέθλια"
 				type="email"
 				bind:value={$form.email}
 				{...$constraints.email}
