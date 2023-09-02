@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { SlideToggle } from '@skeletonlabs/skeleton';
+	import { Icon, XCircle } from 'svelte-hero-icons';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { getPosition } from '$lib/utils';
 	import { page } from '$app/stores';
@@ -7,7 +8,7 @@
 
 	export let data;
 
-	let fotografiaAdia : boolean;
+	let fotografiaAdia: boolean;
 
 	const { form, errors, constraints } = superForm(data.deltiaForm, {
 		taintedMessage: 'Are you sure you want leave??',
@@ -15,13 +16,14 @@
 		validators: deltia
 	});
 	if ($page.url.pathname.substring(0, getPosition($page.url.pathname, '/', 2)) == '/new') {
-		fotografiaAdia=false
+		fotografiaAdia = false;
 		$form.fotografia_adia = 'false';
-	}else{
-		if ($form.fotografia_adia) fotografiaAdia = true;
-
+	} else {
+		if ($form.fotografia_adia){
+			fotografiaAdia = true;
+			$form.fotografia_adia = 'true'
+		} 
 	}
-
 
 	function fotografiaAdiaC(): void {
 		fotografiaAdia = !fotografiaAdia;
@@ -32,20 +34,34 @@
 		}
 	}
 
-	function numberGal(): void{
-		if($form.gal_Number ==null)
-			$form.gal_Number=undefined
+	function numberGal(): void {
+		if ($form.gal_Number == null) $form.gal_Number = undefined;
 	}
 
+	function formaRemove(): void {
+		const input = <HTMLFormElement>document.getElementById('forma_GDPR');
+		try {
+			input.value = '';
+			if (input.value) {
+				input.type = 'text';
+				input.type = 'file';
+			}
+		} catch (e) {}
+	}
+
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 </script>
 
-<form id="deltiaForm" action="?/deltia" method="POST"  enctype="multipart/form-data">
+<SuperDebug data={$form} />
+
+<form id="deltiaForm" action="?/deltia" method="POST" enctype="multipart/form-data" >
 	<h1 class="text-3xl font-bold mb-4">Δελτία</h1>
 
 	<div class="mb-3">
 		<span>Δελτίο Υγείας</span>
 		{#if $errors.deltio_Igias}
-			<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.deltio_Igias}</small>
+			<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.deltio_Igias}</small
+			>
 		{/if}
 		<input
 			class="input"
@@ -92,17 +108,22 @@
 	<label class="label">
 		<span>Φόρμα GDPR</span>
 		{#if $errors.forma_GDPR}
-			<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.forma_GDPR}</small
-			>
+			<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.forma_GDPR}</small>
 		{/if}
-		<input
-			class="input"
-			id="forma_GDPR"
-			name="forma_GDPR"
-			type="file"
-			bind:value={$form.forma_GDPR}
-			{...$constraints.forma_GDPR}
-		/>
+
+		<div class="input-group input-group-divider grid-cols-[1fr_auto]">
+			<input
+				class="input"
+				id="forma_GDPR"
+				name="forma_GDPR"
+				type="file"
+				bind:value={$form.forma_GDPR}
+				{...$constraints.forma_GDPR}
+			/>
+			<button type="button" class="btn variant-filled-error" on:click={formaRemove}
+				><Icon src={XCircle} class="w-5 h-5" /></button
+			>
+		</div>
 	</label>
 	<SlideToggle
 		name="slider-label"

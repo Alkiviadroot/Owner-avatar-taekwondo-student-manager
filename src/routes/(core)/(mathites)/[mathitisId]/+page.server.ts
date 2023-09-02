@@ -140,9 +140,11 @@ export const actions = {
         else
             await locals.pb.collection('provlimata').update(provlimataId, provlimataForm.data);
     },
+
     deltia: async ({ request, locals, params }: any) => {
         const form = await request.formData();
         const deltiaForm = await superValidate(form, deltia);
+        console.log("teste")
 
         if (!deltiaForm.valid) {
             return fail(400, {
@@ -158,7 +160,7 @@ export const actions = {
         formData.append("gal_Number", deltiaForm.data.gal_Number !== undefined ? deltiaForm.data.gal_Number.toString() : "");
         formData.append("gal_Date", deltiaForm.data.gal_Date !== undefined ? deltiaForm.data.gal_Date : "");
         formData.append("deltio_Igias", deltiaForm.data.deltio_Igias !== undefined ? deltiaForm.data.deltio_Igias : "");
-
+        
         const file = form.get('forma_GDPR');
         if (file instanceof File && file?.size != 0) {
             let name = params.mathitisId + "." + file.type.replace('image/', '')

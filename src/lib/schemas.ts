@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
-const ACCEPTED_IMAGE_TYPES = '.*.(png|jpg|jpeg|webp)';
+const ACCEPTED_IMAGE_TYPES = '.*(.png|.jpg|.jpeg|.webp)';
+const ACCEPTED_FILE_TYPES= '.*(.png|.jpg|.jpeg|.webp|.pdf)';
 
 export const mathitis = z.object({
 	id: z.string().trim(),
@@ -59,7 +60,7 @@ export const provlimata = z.object({
 export const deltia = z.object({
 	mathitis: z.string().trim(),
 
-	forma_GDPR: z.string().regex(new RegExp(ACCEPTED_IMAGE_TYPES), "Ο τύπος του αρχείου δεν είναι αποδεκτός"),
+	forma_GDPR: z.string().regex(new RegExp(ACCEPTED_FILE_TYPES), "Ο τύπος του αρχείου δεν είναι αποδεκτός"),
 	fotografia_adia: z.string().trim(),
 
 	gal_Number: z.number().nonnegative("Μη έγκυρος χαρακτήρας ( - )").int("Μη έγκυρος χαρακτήρας ( . ) ").finite().safe(),
