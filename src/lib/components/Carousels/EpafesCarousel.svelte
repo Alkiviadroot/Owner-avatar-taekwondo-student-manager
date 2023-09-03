@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { Icon, ArrowLeft, ArrowRight } from 'svelte-hero-icons';
+	import EpafiCard from '$lib/components/Cards/EpafiCard.svelte';
 
 	let elemCarousel: HTMLDivElement;
-
 	export let epafesR: any;
 
+	const show = {
+		tilefono: true
+	};
 	function carouselLeft(): void {
 		const x =
 			elemCarousel.scrollLeft === 0
@@ -20,9 +23,6 @@
 				: elemCarousel.scrollLeft + elemCarousel.clientWidth; // step right
 		elemCarousel.scroll(x, 0);
 	}
-
-
-
 </script>
 
 <div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center mb-4">
@@ -32,16 +32,11 @@
 	</button>
 	<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
 		{#each epafesR as epafi}
-			<div
-				class="card p-4 m-3 {epafi.paralavi
-					? 'variant-ghost-primary'
-					: 'variant-ghost-surface'} snap-center"
-			>
-				<h1 class="text-xl">{epafi.sxesi}</h1>
-				<hr class="my-3" />
-				<p>{epafi.onoma} {epafi.epitheto}</p>
-				<p>{epafi.tilefono}</p>
-			</div>
+			<EpafiCard
+				{epafi}
+				{show}
+				style={epafi.paralavi ? 'variant-ghost-primary' : 'variant-ghost-surface'}
+			/>
 		{/each}
 	</div>
 	<!-- Button: Right -->

@@ -65,11 +65,22 @@ export const load = async ({ locals, params }: any,) => {
     const deltiaForm = await superValidate(deltiaR, deltia);
 
 
+    let epafes: any = [];
+    try {
+        epafes = serializeNonPOJOs(await locals.pb.collection('epafes').getFullList({
+            filter: 'mathitis = "' + mathitisId + '"',
+            sort: '-paralavi',
+        }));
+    } catch { console.log("no record") }
+
     return {
         profile, mathitisForm,
         provlimataForm, provlimataR,
         deltiaForm, deltiaR,
+        epafes,
     }
+
+    
 }
 
 export const actions = {

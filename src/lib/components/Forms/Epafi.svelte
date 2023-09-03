@@ -1,25 +1,21 @@
 <script lang="ts">
-	import { SlideToggle, ListBox, ListBoxItem, popup } from '@skeletonlabs/skeleton';
-	import type { PopupSettings } from '@skeletonlabs/skeleton';
+	import { SlideToggle,modalStore } from '@skeletonlabs/skeleton';
+	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { epafes } from '$lib/schemas';
-	import EpafesCarousel from '$lib/components/Carousels/EpafesCarousel.svelte';
-	import { Icon, BarsArrowDown } from 'svelte-hero-icons';
+	import { Icon, XCircle } from 'svelte-hero-icons';
 	export let data;
-	let epafesR: any = data.records;
-	const mathitisId = data.mathitisId;
+	let epafi: any = data.epafi;
+	let paralavi: boolean = epafi.paralavi;
 
-	let paralavi: boolean = false;
-
-
-	const { form, errors, constraints } = superForm(data.epafesForm, {
+	const { form, errors, constraints } = superForm(data.epafiForm, {
 		taintedMessage: 'Are you sure you want leave??',
 		resetForm: true,
 		validators: epafes
 	});
 
-	$form.paralavi = 'false';
-
+	if (paralavi) $form.paralavi = 'true';
+	else $form.paralavi = 'false';
 	function paralaviChange(): void {
 		paralavi = !paralavi;
 		if (paralavi) $form.paralavi = 'true';
@@ -31,38 +27,30 @@
 		if ($form.tilefonoE == null) $form.tilefonoE = undefined;
 	}
 
-	const popupSxesi: PopupSettings = {
-		event: 'click',
-		target: 'popupSxesi',
-		placement: 'bottom'
+	const modal: ModalSettings = {
+		type: 'confirm',
+		title: 'Διαγραφή',
+		buttonTextCancel: 'Ακύρωση',
+		buttonTextConfirm: 'Διαγραφή',
+		body: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την επαφή για πάντα?',
+		response: (r: boolean) => {
+			if (r == true) {
+				var epafiDeleteForm = <HTMLFormElement>document.getElementById('epafiDeleteForm');
+					epafiDeleteForm.submit();
+			}
+		}
 	};
-	let sxesiValue: string = '';
+
+	function deleteModal(): void {
+		modalStore.trigger(modal);
+	}
 </script>
 
-<EpafesCarousel {epafesR} />
-
-<form id="epafesForm" action="?/epafes" method="POST" >
-	<h1 class="text-3xl font-bold mb-4">Επαφές</h1>
-
+<form id="epafiForm" action="?/epafi" method="POST">
 	<div class="mt-1 w-full grid grid-cols-1 md:grid-cols-2 gap-4">
-		<label class="label">
-			<span>Σχέση</span>{#if $errors.sxesi}
-				<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.sxesi}</small>
-			{/if}
-			<div class="input-group input-group-divider grid-cols-[1fr_auto]">
-				<input
-					type="text"
-					name="sxesi"
-					id="sxesi"
-					class="input"
-					value={sxesiValue}
-					{...$constraints.sxesi}
-				/>
-				<button class="btn variant-filled" use:popup={popupSxesi}>
-					<Icon src={BarsArrowDown} class="w-4 h-4 mr-1" />
-				</button>
-			</div>
-		</label>
+		<h1 class="text-3xl font-bold mb-4 text-center">
+			{epafi.sxesi}
+		</h1>
 
 		<SlideToggle
 			name="slider-label"
@@ -170,24 +158,14 @@
 	</div>
 	<input hidden id="paralavi" name="paralavi" type="text" value={paralavi ? 'true' : 'false'} />
 
-	<button class="btn variant-filled-success float-left mt-10 mb-7" id="submitEpafi" type="submit"
+	
+	<button class="btn variant-filled-success float-right mt-10 mb-7" id="submitEpafi" type="submit"
 		>Αποθήκευση
 	</button>
-	<a class="btn variant-filled-primary float-right mt-10 mb-7" id="telos" href="/{mathitisId}">Τέλος →</a
-	>
 </form>
 
-<!-- Popup -->
-<div class="card p-4 max-w-sm" data-popup="popupSxesi">
-	<div class="grid grid-cols-1 gap-2">
-		<ListBox>
-			<ListBoxItem bind:group={sxesiValue} name="medium" value="Μητέρα">Μητέρα</ListBoxItem>
-			<ListBoxItem bind:group={sxesiValue} name="medium" value="Πατέρας">Πατέρας</ListBoxItem>
-			<ListBoxItem bind:group={sxesiValue} name="medium" value="Γίαγια">Γίαγια</ListBoxItem>
-			<ListBoxItem bind:group={sxesiValue} name="medium" value="Παπούς">Παπούς</ListBoxItem>
-			<ListBoxItem bind:group={sxesiValue} name="medium" value="Θείος">Θείος</ListBoxItem>
-			<ListBoxItem bind:group={sxesiValue} name="medium" value="Θεία">Θεία</ListBoxItem>
-		</ListBox>
-	</div>
-	<div class="arrow bg-surface-100-800-token" />
-</div>
+<button class="btn variant-filled-error float-left mt-10 mb-7" on:click={deleteModal} type="button">
+	<Icon src={XCircle} class="w-6 h-6" />
+	Διαγραφή
+</button>
+<form id="epafiDeleteForm" action="?/epafiDelete" method="POST" />

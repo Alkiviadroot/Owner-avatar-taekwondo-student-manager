@@ -2,6 +2,7 @@
 	import Mathitis from '$lib/components/Profile/Mathitis.svelte';
 	import Provlimata from '$lib/components/Profile/Provlimata.svelte';
 	import Deltia from '$lib/components/Profile/Deltia.svelte';
+	import Epafes from '$lib/components/Profile/Epafes.svelte';
 
 	import { Avatar, TabGroup, Tab } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
@@ -96,7 +97,7 @@
 		{:else if tabSet === 2}
 			<Deltia {data} />
 		{:else if tabSet === 3}
-			(tab panel 4 contents)
+			<Epafes {data}/>
 		{:else if tabSet === 4}
 			(tab panel 5 contents)
 		{:else if tabSet === 5}
