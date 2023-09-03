@@ -3,6 +3,9 @@
 	import Provlimata from '$lib/components/Profile/Provlimata.svelte';
 	import Deltia from '$lib/components/Profile/Deltia.svelte';
 	import Epafes from '$lib/components/Profile/Epafes.svelte';
+	import Eksetasi from '$lib/components/Profile/Eksetasi.svelte';
+
+	import Zoni from '$lib/components/Profile/Zoni.svelte';
 
 	import { Avatar, TabGroup, Tab } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
@@ -15,7 +18,8 @@
 		Heart,
 		UserGroup,
 		Trophy,
-		Banknotes
+		Banknotes,
+		Calendar
 	} from 'svelte-hero-icons';
 
 	let phone = false;
@@ -30,7 +34,7 @@
 </script>
 
 <div class="flex justify-center p-2 mb-7">
-	<div class="inline-block mr-5">
+	<div class="relative inline-block mr-5">
 		<Avatar
 			src={mathitis.fotografiaView}
 			border="border-4  {mathitis.energos ? 'border-primary-500' : 'border-surface-400'}"
@@ -38,6 +42,7 @@
 			width="w-32"
 			rounded="rounded-full"
 		/>
+		<Zoni zoni={data.zoni} extraStyle="absolute -bottom-1 -right-0 z-10  px-5" />
 	</div>
 	<div class="inline-block">
 		<h1 class="text-3xl mb-3">
@@ -82,9 +87,12 @@
 		<span><Icon src={UserGroup} class="w-7 h-7" /></span>
 	</Tab>
 	<Tab bind:group={tabSet} name="exams" value={4}>
+		<span><Icon src={Calendar} class="w-7 h-7" /></span>
+	</Tab>
+	<Tab bind:group={tabSet} name="exams" value={5}>
 		<span><Icon src={Trophy} class="w-7 h-7" /></span>
 	</Tab>
-	<Tab bind:group={tabSet} name="payment" value={5}>
+	<Tab bind:group={tabSet} name="payment" value={6}>
 		<span><Icon src={Banknotes} class="w-7 h-7" /></span>
 	</Tab>
 
@@ -97,11 +105,13 @@
 		{:else if tabSet === 2}
 			<Deltia {data} />
 		{:else if tabSet === 3}
-			<Epafes {data}/>
+			<Epafes {data} />
 		{:else if tabSet === 4}
 			(tab panel 5 contents)
 		{:else if tabSet === 5}
-			(tab panel 6 contents)
+			<Eksetasi {data}/>
+		{:else if tabSet === 6}
+			(tab panel 7 contents)
 		{/if}
 	</svelte:fragment>
 </TabGroup>

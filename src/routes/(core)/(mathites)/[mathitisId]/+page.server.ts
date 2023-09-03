@@ -1,6 +1,6 @@
 import { redirect, fail } from '@sveltejs/kit';
 import { superValidate } from "sveltekit-superforms/server"
-import { mathitis, provlimata, deltia } from '$lib/schemas';
+import { mathitis, provlimata, deltia, exetasi } from '$lib/schemas';
 import { serializeNonPOJOs } from '$lib/utils.js';
 import moment from 'moment';
 
@@ -73,14 +73,35 @@ export const load = async ({ locals, params }: any,) => {
         }));
     } catch { console.log("no record") }
 
+    let exetasis: any = [];
+    try {
+        exetasis = serializeNonPOJOs(await locals.pb.collection('eksetasis').getFullList({
+            filter: 'mathitis = "' + mathitisId + '"',
+        }));
+    } catch { console.log("no record") }
+
+    const exetasiForm = await superValidate(exetasi);
+
+    let exetasiCounter = 0;
+    for (let exetasi of exetasis) {
+        if (exetasi.epitixia) {
+            exetasiCounter += 1;
+            exetasi.zoni = exetasiCounter;
+        } else {
+            exetasi.zoni = exetasiCounter + 1;
+        }
+    }
+    const zoni = exetasiCounter
+
     return {
         profile, mathitisForm,
         provlimataForm, provlimataR,
         deltiaForm, deltiaR,
-        epafes,
+        epafes,zoni,
+        exetasiForm, exetasis,
     }
 
-    
+
 }
 
 export const actions = {
@@ -171,7 +192,7 @@ export const actions = {
         formData.append("gal_Number", deltiaForm.data.gal_Number !== undefined ? deltiaForm.data.gal_Number.toString() : "");
         formData.append("gal_Date", deltiaForm.data.gal_Date !== undefined ? deltiaForm.data.gal_Date : "");
         formData.append("deltio_Igias", deltiaForm.data.deltio_Igias !== undefined ? deltiaForm.data.deltio_Igias : "");
-        
+
         const file = form.get('forma_GDPR');
         if (file instanceof File && file?.size != 0) {
             let name = params.mathitisId + "." + file.type.replace('image/', '')
@@ -183,4 +204,18 @@ export const actions = {
         else
             await locals.pb.collection('deltia').update(deltiId, formData);
     },
+
+    exetasi: async ({ request, locals, params }: any) => {
+        const form = await request.formData();
+        const exetasiForm = await superValidate(form, exetasi);
+
+        if (!exetasiForm.valid) {
+            return fail(400, {
+                exetasiForm
+            })
+        }
+
+        exetasiForm.data.mathitis = params.mathitisId
+        await locals.pb.collection('eksetasis').create(exetasiForm.data);
+    }
 }

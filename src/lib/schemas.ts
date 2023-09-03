@@ -94,3 +94,14 @@ export const epafes = z.object({
 	email: true,
 	epankelma:true
 });
+
+export const exetasi = z.object({
+	mathitis: z.string().trim(),
+	date: z.string({ required_error: "Απαιτείται" }).trim(),
+	leptomeries:z.string().max(1500, "Πάρα πολλοί χαρακτήρες").trim(),
+	epitixia:z.string().trim(),
+
+}).partial({
+	mathitis: true,
+	leptomeries:true,
+})
