@@ -121,7 +121,7 @@
 </div>
 <div class="meres-grid">
 	{#each data.meresAll as mera}
-		<div class="relative inline-block">
+		<div class="relative inline-block" id={mera.mera}>
 			<button
 				type="button"
 				on:click={() => deleteModal(mera)}
@@ -129,13 +129,13 @@
 					? ''
 					: 'invisible'}"><Icon src={XCircle} class="w-6 h-6" /></button
 			>
-			<div id={mera.mera} class="card p-4 m-3 variant-outline-tertiary text-center">
+			<div  class="card p-4 m-3 variant-outline-tertiary text-center">
 				<h1>{mera.mera}</h1>
 				{mera.start} - {mera.stop}
 			</div>
 		</div>
 		<form id="DeleteForm{mera.id}" action="?/meraDelete" method="POST" hidden >
-        <input type="text" value="{mera.id}" id="idMera" name="idMera">
+        <input type="text" value="{mera.id}" id="idMera" name="idMera" hidden>
         </form>
 	{/each}
 </div>
