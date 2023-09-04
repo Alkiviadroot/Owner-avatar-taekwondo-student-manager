@@ -63,10 +63,10 @@
 			href: '/new'
 		},
 		{
-			id: 'group',
-			title: 'Groups',
+			id: 'meres',
+			title: 'Μέρες',
 			icon: SquaresPlus,
-			href: '/groups'
+			href: '/meres'
 		},
 	];
 </script>

@@ -9,9 +9,7 @@
 	let dans: string = '_';
 
 	if (zoni == '0') {
-		color1 = 'White';
-		color2 = 'White';
-		style = 'border-black text-white';
+		style = 'invisible';
 	} else if (zoni == '1') {
 		color1 = 'White';
 		color2 = 'White';

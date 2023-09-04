@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const ACCEPTED_IMAGE_TYPES = '.*(.png|.jpg|.jpeg|.webp)';
-const ACCEPTED_FILE_TYPES= '.*(.png|.jpg|.jpeg|.webp|.pdf)';
+const ACCEPTED_FILE_TYPES = '.*(.png|.jpg|.jpeg|.webp|.pdf)';
 
 export const mathitis = z.object({
 	id: z.string().trim(),
@@ -88,20 +88,26 @@ export const epafes = z.object({
 
 }).partial({
 	mathitis: true,
-	allo:true,
+	allo: true,
 	tilefono: true,
 	tilefonoE: true,
 	email: true,
-	epankelma:true
+	epankelma: true
 });
 
 export const exetasi = z.object({
 	mathitis: z.string().trim(),
 	date: z.string({ required_error: "Απαιτείται" }).trim(),
-	leptomeries:z.string().max(1500, "Πάρα πολλοί χαρακτήρες").trim(),
-	epitixia:z.string().trim(),
+	leptomeries: z.string().max(1500, "Πάρα πολλοί χαρακτήρες").trim(),
+	epitixia: z.string().trim(),
 
 }).partial({
 	mathitis: true,
-	leptomeries:true,
-})
+	leptomeries: true,
+});
+
+export const meres = z.object({
+	mera: z.string({ required_error: "Απαιτείται" }).trim(),
+	start: z.string({ required_error: "Απαιτείται" }).trim(),
+	stop: z.string({ required_error: "Απαιτείται" }).trim(),
+});
