@@ -51,16 +51,16 @@ export const load = async ({ locals, params }: any,) => {
         deltiaR = serializeNonPOJOs(await locals.pb.collection('deltia').getFirstListItem('mathitis="' + mathitisId + '"'));
         deltiId = deltiaR.id;
         deltiaNotAvailable = false;
+        if (deltiaR.gal_Number == 0) deltiaR.gal_Number = undefined;
+        if (deltiaR.forma_GDPR == '') deltiaR.forma_GDPR = undefined;
+        deltiaR.deltio_IgiasRaw = deltiaR.deltio_Igias;
+        deltiaR.gal_DateRaw = deltiaR.gal_Date;
+        deltiaR.deltio_Igias = moment(deltiaR.deltio_Igias).format('YYYY-MM-DD');
+        deltiaR.gal_Date = moment(deltiaR.gal_Date).format('YYYY-MM-DD');
+        deltiaR.forma_GDPR_View = locals.pb.files.getUrl(deltiaR, deltiaR.forma_GDPR, { 'token': fileToken });
     } catch {
         deltiaNotAvailable = true;
     }
-    if (deltiaR.gal_Number == 0) deltiaR.gal_Number = undefined;
-    if (deltiaR.forma_GDPR == '') deltiaR.forma_GDPR = undefined;
-    deltiaR.deltio_IgiasRaw = deltiaR.deltio_Igias;
-    deltiaR.gal_DateRaw = deltiaR.gal_Date;
-    deltiaR.deltio_Igias = moment(deltiaR.deltio_Igias).format('YYYY-MM-DD');
-    deltiaR.gal_Date = moment(deltiaR.gal_Date).format('YYYY-MM-DD');
-    deltiaR.forma_GDPR_View = locals.pb.files.getUrl(deltiaR, deltiaR.forma_GDPR, { 'token': fileToken });
 
     const deltiaForm = await superValidate(deltiaR, deltia);
 
@@ -97,7 +97,7 @@ export const load = async ({ locals, params }: any,) => {
         profile, mathitisForm,
         provlimataForm, provlimataR,
         deltiaForm, deltiaR,
-        epafes,zoni,
+        epafes, zoni,
         exetasiForm, exetasis,
     }
 

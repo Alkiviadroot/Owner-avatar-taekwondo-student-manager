@@ -1,6 +1,6 @@
 <script lang="ts">
 	import EpafiCard from '$lib/components/Cards/EpafiCard.svelte';
-	import { Icon, PencilSquare } from 'svelte-hero-icons';
+	import { Icon, PencilSquare,Plus} from 'svelte-hero-icons';
 
 	export let data: any;
 	let epafes = data.epafes;
@@ -26,20 +26,26 @@
 	}
 </script>
 
+<div class="flex float-left mb-5 variant-ghost-tertiary rounded-full p-2">
+	<a href="/new/{mathitisId}/epafes"><Icon src={Plus} class="w-6 h-6" /></a>
+</div>
 <div class="flex justify-end mb-5">
-	<button type="button" id="EpafesEditBtn" class="btn variant-ghost-success rounded-full" on:click={editEpafes}
-		><Icon src={PencilSquare} class="w-6 h-6" /></button
+	<button
+		type="button"
+		id="EpafesEditBtn"
+		class="btn variant-ghost-success rounded-full"
+		on:click={editEpafes}><Icon src={PencilSquare} class="w-6 h-6" /></button
 	>
 </div>
 
-<div class="flex justify-center">
 	<div class="epafi-grid">
 		{#each epafes as epafi}
 			<div class="relative inline-block">
 				<a
 					href="{mathitisId}/epafi/{epafi.id}"
-					class="variant-filled-success p-2 rounded-full absolute -top-0 -right-0 z-10 {EpafesEdit?"":"invisible"}"
-					><Icon src={PencilSquare} class="w-6 h-6" /></a
+					class="variant-filled-success p-2 rounded-full absolute -top-0 -right-0 z-10 {EpafesEdit
+						? ''
+						: 'invisible'}"><Icon src={PencilSquare} class="w-6 h-6" /></a
 				>
 				<EpafiCard
 					{epafi}
@@ -49,7 +55,6 @@
 			</div>
 		{/each}
 	</div>
-</div>
 
 <style>
 	.epafi-grid {

@@ -2,8 +2,6 @@
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { exetasi } from '$lib/schemas';
-	import { page } from '$app/stores';
-	import { getPosition } from '$lib/utils';
 
 	export let data;
 	let epitixia: boolean;

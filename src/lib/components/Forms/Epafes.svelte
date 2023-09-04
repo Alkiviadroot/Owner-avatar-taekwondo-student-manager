@@ -11,7 +11,6 @@
 
 	let paralavi: boolean = false;
 
-
 	const { form, errors, constraints } = superForm(data.epafesForm, {
 		taintedMessage: 'Are you sure you want leave??',
 		resetForm: true,
@@ -41,7 +40,7 @@
 
 <EpafesCarousel {epafesR} />
 
-<form id="epafesForm" action="?/epafes" method="POST" >
+<form id="epafesForm" action="?/epafes" method="POST">
 	<h1 class="text-3xl font-bold mb-4">Επαφές</h1>
 
 	<div class="mt-1 w-full grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -58,7 +57,7 @@
 					value={sxesiValue}
 					{...$constraints.sxesi}
 				/>
-				<button class="btn variant-filled" use:popup={popupSxesi}>
+				<button type="button" class="btn variant-filled" use:popup={popupSxesi}>
 					<Icon src={BarsArrowDown} class="w-4 h-4 mr-1" />
 				</button>
 			</div>
@@ -173,7 +172,8 @@
 	<button class="btn variant-filled-success float-left mt-10 mb-7" id="submitEpafi" type="submit"
 		>Αποθήκευση
 	</button>
-	<a class="btn variant-filled-primary float-right mt-10 mb-7" id="telos" href="/{mathitisId}">Τέλος →</a
+	<a class="btn variant-filled-primary float-right mt-10 mb-7" id="telos" href="/{mathitisId}"
+		>Τέλος →</a
 	>
 </form>
 
