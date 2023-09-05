@@ -10,6 +10,14 @@
 		LightSwitch,
 		drawerStore
 	} from '@skeletonlabs/skeleton';
+	import { onMount } from 'svelte';
+
+	let phone: boolean = false;
+	onMount(() => {
+		const screenWidth = window.screen.width;
+		if (screenWidth <= 500) phone = true;
+	});
+
 	function drawerOpen(): void {
 		drawerStore.open();
 	}
@@ -56,7 +64,7 @@
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft"><Nav {initials} {avatar} /></svelte:fragment>
-	<div id="phonePadding" class="container max-auto p-10">
+	<div class="container max-auto {phone ? 'p-3' : 'p-10'}">
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter" />

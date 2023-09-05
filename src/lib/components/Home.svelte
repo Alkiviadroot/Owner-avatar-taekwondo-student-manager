@@ -3,21 +3,13 @@
 	import GenethliaA from '$lib/components/Carousels/GenethliaACarousel.svelte';
 	import { Icon, Cake,Heart,Identification } from 'svelte-hero-icons';
 	import { TabGroup, Tab } from '@skeletonlabs/skeleton';
-	import { onMount } from 'svelte';
 
 	let tabSet: number = 0;
 	export let data;
 	const genethliaS = data.simeraGenethlia;
 	const genethliaA = data.anerxomenaGenethlia;
 
-	onMount(() => {
-		var padding = <HTMLFormElement>document.getElementById('phonePadding');
-		const screenWidth = window.screen.width;
-		if (screenWidth <= 500) {
-			padding.classList.remove('p-10');
-			padding.classList.add('pt-5');
-		}
-	});
+	
 </script>
 
 <TabGroup
