@@ -48,9 +48,30 @@
 		on:click={editPrograma}><Icon src={PencilSquare} class="w-6 h-6" /></button
 	>
 </div>
-<div class="flex justify-center">
-	<div id="ProgramaData" />
-</div>
+
 <div id="ProgramaForm" hidden>
-	<ProgramaForm {data} {meresList}/>
+	<ProgramaForm {data} {meresList} />
 </div>
+
+<div id="ProgramaData">
+	<div class="meres-grid flex justify-center">
+		{#if data.meresMathiti.length != 0}
+			{#each data.meresMathiti as mera}
+				<div class="relative inline-block" id={mera.mera}>
+					<div class="card p-4 m-3 variant-ghost-primary text-center" id={mera.id}>
+						<h1>{mera.mera}</h1>
+						{mera.start} - {mera.stop}
+					</div>
+				</div>
+			{/each}
+		{/if}
+	</div>
+</div>
+
+<style>
+	.meres-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-gap: 1rem;
+	}
+</style>

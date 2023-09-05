@@ -105,6 +105,14 @@ export const load = async ({ locals, params }: any,) => {
         }));
     } catch { console.log("no record") }
 
+    let meresMathiti = [];
+    for (const p of programa) {
+        for (const mera of meresAll) {
+            if (mera.id == p.mera) {
+                meresMathiti.push(mera);
+            }
+        }
+    }
 
     return {
         profile, mathitisForm,
@@ -112,7 +120,7 @@ export const load = async ({ locals, params }: any,) => {
         deltiaForm, deltiaR,
         epafes, zoni,
         exetasiForm, exetasis,
-        programa, meresAll
+        programa, meresAll, meresMathiti
     }
 
 
@@ -239,13 +247,19 @@ export const actions = {
         const obj = JSON.parse(meres);
 
         for (const p of programa) {
-            await locals.pb.collection('programa').delete(p.id);
+            try {
+                await locals.pb.collection('programa').delete(p.id);
+
+            } catch { }
         }
         for (const meres of obj) {
-            const formData = new FormData();
-            formData.append("mathitis", params.mathitisId)
-            formData.append("mera", meres)
-            await locals.pb.collection('programa').create(formData);
+            try {
+                const formData = new FormData();
+                formData.append("mathitis", params.mathitisId)
+                formData.append("mera", meres)
+                await locals.pb.collection('programa').create(formData);
+            } catch { }
+
         }
 
     }
