@@ -110,4 +110,7 @@ export const meres = z.object({
 	mera: z.string({ required_error: "Απαιτείται" }).trim(),
 	start: z.string({ required_error: "Απαιτείται" }).trim(),
 	stop: z.string({ required_error: "Απαιτείται" }).trim(),
+	sort: z.number(),
+}).partial({
+	sort: true,
 });

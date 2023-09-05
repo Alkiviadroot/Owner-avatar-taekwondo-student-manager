@@ -96,7 +96,9 @@ export const load = async ({ locals, params }: any,) => {
 
     const zoni = exetasiCounter
 
-    const meresAll = serializeNonPOJOs(await locals.pb.collection('meres').getFullList());
+    const meresAll = serializeNonPOJOs(await locals.pb.collection('meres').getFullList({
+        sort: 'sort',
+    }));
 
 
     try {
@@ -106,10 +108,11 @@ export const load = async ({ locals, params }: any,) => {
     } catch { console.log("no record") }
 
     let meresMathiti = [];
-    for (const p of programa) {
-        for (const mera of meresAll) {
+    for (const mera of meresAll) {
+        for (const p of programa) {
             if (mera.id == p.mera) {
                 meresMathiti.push(mera);
+                break;
             }
         }
     }
