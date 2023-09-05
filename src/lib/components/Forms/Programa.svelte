@@ -1,8 +1,7 @@
 <script lang="ts">
 	export let data: any;
-    export let meresList: any;
-	let meraSelect: string;	
-
+	export let meresList: any;
+	let meraSelect: string;
 
 	function meraChange(): void {
 		var meraSelected = <HTMLFormElement>document.getElementById('meraView');
@@ -84,8 +83,8 @@
 			meraCheck.classList.add('variant-filled-success');
 		}
 
-        var form = <HTMLFormElement>document.getElementById("progrmaMeres");
-            form.value=JSON.stringify(meresList)
+		var form = <HTMLFormElement>document.getElementById('progrmaMeres');
+		form.value = JSON.stringify(meresList);
 	}
 </script>
 
@@ -102,14 +101,12 @@
 
 <div class="meres-grid">
 	{#each data.meresAll as mera}
-		<div class="relative inline-block" id={mera.mera}>
+		<button id={mera.mera} on:click={() => meresIds(mera)}>
 			<div class="card p-4 m-3 variant-ghost-surface text-center" id={mera.id}>
-				<button on:click={() => meresIds(mera)}>
-					<h1>{mera.mera}</h1>
-					{mera.start} - {mera.stop}
-				</button>
+				<h1>{mera.mera}</h1>
+				{mera.start} - {mera.stop}
 			</div>
-		</div>
+		</button>
 	{/each}
 </div>
 
