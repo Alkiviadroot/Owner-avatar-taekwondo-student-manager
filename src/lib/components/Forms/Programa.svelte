@@ -1,25 +1,9 @@
-<script lang="ts" defer>
-	import { Icon, XCircle } from 'svelte-hero-icons';
-	import { modalStore } from '@skeletonlabs/skeleton';
-	import type { ModalSettings } from '@skeletonlabs/skeleton';
+<script lang="ts">
 	export let data: any;
-	let meraSelect: string;
+    export let meresList: any;
+	let meraSelect: string;	
 
-	let MeraDelete = false;
 
-	function deleteMeres(): void {
-		var DeleteBtn = <HTMLFormElement>document.getElementById('MeresDeleteBtn');
-
-		if (!MeraDelete) {
-			DeleteBtn.classList.add('variant-filled-error');
-			DeleteBtn.classList.remove('variant-ghost-error');
-			MeraDelete = true;
-		} else {
-			DeleteBtn.classList.remove('variant-filled-error');
-			DeleteBtn.classList.add('variant-ghost-error');
-			MeraDelete = false;
-		}
-	}
 	function meraChange(): void {
 		var meraSelected = <HTMLFormElement>document.getElementById('meraView');
 		meraSelect = meraSelected.value;
@@ -82,23 +66,27 @@
 		}
 	}
 
-	const deleteModal = (mera: any) => {
-		const modal: ModalSettings = {
-			type: 'confirm',
-			title: 'Διαγραφή',
-			buttonTextCancel: 'Ακύρωση',
-			buttonTextConfirm: 'Διαγραφή',
-			body: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε ( '+mera.mera+" "+mera.start+" - "+mera.stop +' ) για πάντα?',
-			response: (r: boolean) => {
-				if (r == true) {
-					var meraDeleteForm = <HTMLFormElement>document.getElementById('DeleteForm' + mera.id);
-					meraDeleteForm.submit();
-				}
-			}
-		};
+	function meresIds(mera: any): void {
+		if (meresList.includes(mera.id)) {
+			const index = meresList.indexOf(mera.id);
+			if (index > -1) meresList.splice(index, 1);
+		} else meresList.push(mera.id);
 
-		modalStore.trigger(modal);
-	};
+		for (mera of data.meresAll) {
+			var meraCheck = <HTMLFormElement>document.getElementById(mera.id);
+			meraCheck.classList.remove('variant-filled-success');
+			meraCheck.classList.add('variant-ghost-surface');
+		}
+
+		for (mera of meresList) {
+			var meraCheck = <HTMLFormElement>document.getElementById(mera);
+			meraCheck.classList.remove('variant-ghost-surface');
+			meraCheck.classList.add('variant-filled-success');
+		}
+
+        var form = <HTMLFormElement>document.getElementById("progrmaMeres");
+            form.value=JSON.stringify(meresList)
+	}
 </script>
 
 <select class="select text-center my-5" id="meraView" name="meraView" on:change={meraChange}>
@@ -111,34 +99,28 @@
 	<option value="Σάββατο">Σάββατο</option>
 	<option value="Κυριακή">Κυριακή</option>
 </select>
-<div class="flex justify-end">
-	<button
-		type="button"
-		id="MeresDeleteBtn"
-		class="btn variant-ghost-error rounded-full mb-5"
-		on:click={deleteMeres}><Icon src={XCircle} class="w-6 h-6" /></button
-	>
-</div>
+
 <div class="meres-grid">
 	{#each data.meresAll as mera}
 		<div class="relative inline-block" id={mera.mera}>
-			<button
-				type="button"
-				on:click={() => deleteModal(mera)}
-				class="variant-filled-error p-2 rounded-full absolute -top-0 -right-0 z-10 {MeraDelete
-					? ''
-					: 'invisible'}"><Icon src={XCircle} class="w-6 h-6" /></button
-			>
-			<div  class="card p-4 m-3 variant-outline-primary text-center">
-				<h1>{mera.mera}</h1>
-				{mera.start} - {mera.stop}
+			<div class="card p-4 m-3 variant-ghost-surface text-center" id={mera.id}>
+				<button on:click={() => meresIds(mera)}>
+					<h1>{mera.mera}</h1>
+					{mera.start} - {mera.stop}
+				</button>
 			</div>
 		</div>
-		<form id="DeleteForm{mera.id}" action="?/meraDelete" method="POST" hidden >
-        <input type="text" value="{mera.id}" id="idMera" name="idMera" hidden>
-        </form>
 	{/each}
 </div>
+
+<form id="ProgramaSave" action="?/programaSave" method="POST">
+	<input type="text" id="progrmaMeres" name="progrmaMeres" hidden />
+	<button
+		class="btn variant-filled-success float-right mt-10 mb-7"
+		id="submitPrograma"
+		type="submit">Αποθήκευση →</button
+	>
+</form>
 
 <style>
 	.meres-grid {

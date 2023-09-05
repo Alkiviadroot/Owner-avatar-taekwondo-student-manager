@@ -8,6 +8,8 @@ let provlimataNotAvailable = false;
 let provlimataId: string;
 let deltiaNotAvailable = false;
 let deltiId: string;
+let programa: any = [];
+
 
 export const load = async ({ locals, params }: any,) => {
     const fileToken = await locals.pb.files.getToken();
@@ -91,7 +93,18 @@ export const load = async ({ locals, params }: any,) => {
             exetasi.zoni = exetasiCounter + 1;
         }
     }
+
     const zoni = exetasiCounter
+
+    const meresAll = serializeNonPOJOs(await locals.pb.collection('meres').getFullList());
+
+
+    try {
+        programa = serializeNonPOJOs(await locals.pb.collection('programa').getFullList({
+            filter: 'mathitis = "' + mathitisId + '"',
+        }));
+    } catch { console.log("no record") }
+
 
     return {
         profile, mathitisForm,
@@ -99,6 +112,7 @@ export const load = async ({ locals, params }: any,) => {
         deltiaForm, deltiaR,
         epafes, zoni,
         exetasiForm, exetasis,
+        programa, meresAll
     }
 
 
@@ -217,5 +231,22 @@ export const actions = {
 
         exetasiForm.data.mathitis = params.mathitisId
         await locals.pb.collection('eksetasis').create(exetasiForm.data);
+    },
+
+    programaSave: async ({ request, locals, params }: any) => {
+        const form = await request.formData();
+        const meres = form.get("progrmaMeres") as string;
+        const obj = JSON.parse(meres);
+
+        for (const p of programa) {
+            await locals.pb.collection('programa').delete(p.id);
+        }
+        for (const meres of obj) {
+            const formData = new FormData();
+            formData.append("mathitis", params.mathitisId)
+            formData.append("mera", meres)
+            await locals.pb.collection('programa').create(formData);
+        }
+
     }
 }

@@ -4,6 +4,7 @@
 	import Deltia from '$lib/components/Profile/Deltia.svelte';
 	import Epafes from '$lib/components/Profile/Epafes.svelte';
 	import Eksetasi from '$lib/components/Profile/Eksetasi.svelte';
+	import Programa from '$lib/components/Profile/Programa.svelte';
 
 	import Zoni from '$lib/components/Profile/Zoni.svelte';
 
@@ -107,7 +108,7 @@
 		{:else if tabSet === 3}
 			<Epafes {data} />
 		{:else if tabSet === 4}
-			(tab panel 5 contents)
+			<Programa {data}/>
 		{:else if tabSet === 5}
 			<Eksetasi {data}/>
 		{:else if tabSet === 6}
