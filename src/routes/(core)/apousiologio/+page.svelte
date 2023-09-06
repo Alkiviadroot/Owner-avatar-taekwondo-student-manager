@@ -27,7 +27,7 @@
 	console.log(value);
 </script>
 
-<div class="w-min">
+<div class="w-min  ml-3">
 	<CalendarView
 		bind:value
 		locale="el-GR"
@@ -48,7 +48,7 @@
 <div class="meres-grid">
 	{#each data.meresAll as mera}
 		<a
-			href="/apousiologio/{mera.start.replace(':', '')}{mera.stop.replace(':', '')}{url}"
+			href="/apousiologio/{mera.id}/{mera.start.replace(':', '')}{mera.stop.replace(':', '')}{url}"
 			class="relative inline-block {mera.sort.toString()[0] == Currentmera.toString()
 				? ''
 				: 'hidden'}"

@@ -63,9 +63,10 @@
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
+	
 	<svelte:fragment slot="sidebarLeft"><Nav {initials} {avatar} /></svelte:fragment>
-	<div class="container max-auto {phone ? 'p-3' : 'p-10'}">
+
+	<div class="container max-w-full max-auto  {phone ? 'p-3' : 'p-10'}">
 		<slot />
 	</div>
-	<svelte:fragment slot="pageFooter" />
 </AppShell>
