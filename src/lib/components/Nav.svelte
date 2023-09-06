@@ -48,7 +48,7 @@
 			id: 'apousiologio',
 			title: 'Απουσιολόγιο',
 			icon: CalendarDays,
-			href: '/absences'
+			href: '/apousiologio'
 		},
 		{
 			id: 'anazitisi',

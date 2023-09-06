@@ -10,6 +10,9 @@
 	import { storePopup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
+	// Fluent
+	import "fluent-svelte/theme.css";
+
 </script>
 
 <slot/>

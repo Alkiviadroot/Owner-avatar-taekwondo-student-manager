@@ -4,7 +4,7 @@ import { meres } from '$lib/schemas';
 import { serializeNonPOJOs } from '$lib/utils';
 
 
-export const load = async ({ locals }) => {
+export const load = async ({ locals }:any) => {
 
     const meresForm = await superValidate(meres);
     const meresAll = serializeNonPOJOs(await locals.pb.collection('meres').getFullList({

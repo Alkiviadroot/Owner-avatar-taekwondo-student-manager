@@ -1,4 +1,3 @@
-import { redirect } from '@sveltejs/kit';
 import { addHours, serializeNonPOJOs } from '$lib/utils.js';
 import moment from 'moment';
 export const load = async ({ locals }: any,) => {
