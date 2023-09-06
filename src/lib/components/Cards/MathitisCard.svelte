@@ -20,7 +20,7 @@
 				' ' +
 				mathitis.epitheto.charAt(0).toUpperCase() +
 				mathitis.epitheto.slice(1) +
-				' στο παρουσιολόγιο?',
+				' στο απουσιολόγιο?',
 			response: (r: boolean) => {
 				if (r == true) {
 					var AddMathitisForm = <HTMLFormElement>document.getElementById('AddForm' + mathitis.id);

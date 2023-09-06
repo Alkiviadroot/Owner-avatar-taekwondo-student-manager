@@ -4,7 +4,7 @@
 	import { onDestroy } from 'svelte';
 
 	export let data;
-	export let apousiologio:boolean;
+	export let apousiologio: boolean;
 
 	type Mathitis = {
 		id: string;
@@ -46,10 +46,14 @@
 <div class="mathitis-grid">
 	{#each $searchStore.filtered as mathitis}
 		{#if mathitis.energos}
-			<MathitisCard {mathitis} {show} {apousiologio}style='variant-ghost-primary'/>
+			<MathitisCard {mathitis} {show} {apousiologio} style="variant-ghost-primary" />
 		{:else}
-			<MathitisCard {mathitis} {show}  {apousiologio}style='variant-ghost-surface'/>
+			<MathitisCard {mathitis} {show} {apousiologio} style="variant-ghost-surface" />
 		{/if}
+
+		<form id="AddForm{mathitis.id}" action="?/addMathiti" method="POST" hidden>
+			<input type="text" value={mathitis.id} id="idMathiti" name="idMathiti" hidden />
+		</form>
 	{/each}
 </div>
 

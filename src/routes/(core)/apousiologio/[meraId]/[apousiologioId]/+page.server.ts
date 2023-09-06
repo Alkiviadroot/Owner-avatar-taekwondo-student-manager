@@ -5,7 +5,6 @@ let minas: string;
 let xronos: string;
 export const load = async ({ locals, params }: any) => {
     const fileToken = await locals.pb.files.getToken();
-    let iparxonMathites = [];
     const apousiologioId = params.apousiologioId
     let mathitesList = []
     let apousiologioDate = apousiologioId.slice(11, 20);
@@ -42,7 +41,7 @@ export const load = async ({ locals, params }: any) => {
         'id = "' + params.meraId + '"'
     ));
 
-    let parousiesDouble:any=[];
+    let parousiesDouble: any = [];
 
     for (const mathitis of mathitesProgramatos) {
         const mathitisObj = serializeNonPOJOs(await locals.pb.collection('mathites').getOne(mathitis.mathitis));
@@ -61,7 +60,7 @@ export const load = async ({ locals, params }: any) => {
     }
 
     const difference =
-    parousies.filter((element:any) => !parousiesDouble.includes(element));
+        parousies.filter((element: any) => !parousiesDouble.includes(element));
 
     for (const mathitis of difference) {
         const mathitisObj = serializeNonPOJOs(await locals.pb.collection('mathites').getOne(mathitis.mathitis));
@@ -86,7 +85,10 @@ export const actions = {
         });
 
         for (const parousia of records)
-            await locals.pb.collection('parousies').delete(parousia.id);
+            try {
+                await locals.pb.collection('parousies').delete(parousia.id);
+            } catch { }
+
 
 
 

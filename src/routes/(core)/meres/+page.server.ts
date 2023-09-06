@@ -1,10 +1,10 @@
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import { superValidate, setError } from "sveltekit-superforms/server"
 import { meres } from '$lib/schemas';
 import { serializeNonPOJOs } from '$lib/utils';
 
 
-export const load = async ({ locals }:any) => {
+export const load = async ({ locals }: any) => {
 
     const meresForm = await superValidate(meres);
     const meresAll = serializeNonPOJOs(await locals.pb.collection('meres').getFullList({
