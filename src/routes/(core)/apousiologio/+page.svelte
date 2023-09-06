@@ -35,6 +35,7 @@
 				bind:value
 				locale="el-GR"
 				max={new Date()}
+				min={new Date(new Date().getFullYear(), 8, 1)}
 				weekStart={1}
 				headers
 				on:change={changeDate}
