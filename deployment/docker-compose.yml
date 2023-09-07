@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  pocketbase:
+    container_name: pocketbase
+    image: augustodelg/pocketbase:latest
+    restart: unless-stopped
+    ports:
+      - 8090:8090
+    volumes:
+      - pocketbase:/pb_data
+
+  tunnel:
+    container_name: cloudflared-tunnel-pocketbase
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    env_file:
+      - ../.env
+
+volumes:
+  pocketbase:
+   external: true
