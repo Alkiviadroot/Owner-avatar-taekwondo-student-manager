@@ -2,7 +2,7 @@
 	import moment from 'moment';
 	import { modalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
-	import { Icon, Phone, Cake } from 'svelte-hero-icons';
+	import { Icon, Phone, Cake, Calendar } from 'svelte-hero-icons';
 	export let mathitis: any;
 	export let show: any;
 	export let style: string;
@@ -77,6 +77,24 @@
 					<Icon src={Cake} class="w-5 h-5 mr-1" />
 					<span>
 						{moment(mathitis.genethlia).format('DD/MM/YYYY')}
+					</span>
+				</span>
+				<br />
+			{/if}
+			{#if mathitis.deltioYgias != '' && show.deltioYgias}
+				<span class="inline-flex items-baseline">
+					<Icon src={Calendar} class="w-5 h-5 mr-1" />
+					<span>
+						{moment(mathitis.deltioYgias).format('DD/MM/YYYY')}
+					</span>
+				</span>
+				<br />
+			{/if}
+			{#if mathitis.gal != '' && show.gal}
+				<span class="inline-flex items-baseline">
+					<Icon src={Calendar} class="w-5 h-5 mr-1" />
+					<span>
+						{moment(mathitis.gal).format('DD/MM/YYYY')}
 					</span>
 				</span>
 				<br />

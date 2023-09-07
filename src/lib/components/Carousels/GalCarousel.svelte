@@ -1,14 +1,16 @@
 <script lang="ts">
-	import MathitisCard from '$lib/components/Cards/MathitisCard.svelte';
 	import { Icon, ArrowLeft, ArrowRight } from 'svelte-hero-icons';
+	import MathitisCard from '$lib/components/Cards/MathitisCard.svelte';
 	let elemCarousel: HTMLDivElement;
 
-	export let genethliaA: any;
+	export let galE: any;
 
 	const show = {
 		kinito: true,
-		genethlia: true
+		gal: true
 	};
+
+	const apousiologio = false;
 
 	function carouselLeft(): void {
 		const x =
@@ -28,14 +30,19 @@
 </script>
 
 <h1 class="text-xl mb-3">Επόμενα</h1>
-<div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
+<div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center mb-4">
 	<!-- Button: Left -->
 	<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
 		<Icon src={ArrowLeft} class="w-4 h-4 mr-1" />
 	</button>
 	<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
-		{#each genethliaA as mathitis}
-			<MathitisCard {mathitis} {show} style="variant-ghost-error"/>
+		{#each galE as mathitis}
+			<MathitisCard
+				{apousiologio}
+				{mathitis}
+				{show}
+				style= 'variant-ghost-surface'
+			/>
 		{/each}
 	</div>
 	<!-- Button: Right -->

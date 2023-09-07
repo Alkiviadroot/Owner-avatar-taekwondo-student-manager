@@ -31,7 +31,6 @@
 
 <div class="flex flex-wrap">
 	<div class="w-full sm:w-80 md:w-80 lg:w-80 xl:w-80">
-		<!-- Content for the first div -->
 		<div class="w-min ml-3">
 			<CalendarView
 				bind:value
@@ -55,7 +54,6 @@
 		</div>
 	</div>
 	<div class="calculated-width">
-		<!-- Content for the second div -->
 		<div class="meres-grid">
 			{#each data.meresAll as mera}
 				<a

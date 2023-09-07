@@ -1,7 +1,12 @@
 <script lang="ts">
 	import GenethliaS from '$lib/components/Carousels/GenethliaSCarousel.svelte';
-	import GenethliaA from '$lib/components/Carousels/GenethliaACarousel.svelte';
-	import { Icon, Cake,Heart,Identification } from 'svelte-hero-icons';
+	import GenethliaE from '$lib/components/Carousels/GenethliaECarousel.svelte';
+	import DeltioYgiasLCarousel from '$lib/components/Carousels/DeltioYgiasLCarousel.svelte';
+	import DeltioYgiasECarousel from '$lib/components/Carousels/DeltioYgiasECarousel.svelte';
+	import GalLCarousel from '$lib/components/Carousels/GalLCarousel.svelte';
+	import GalCarousel from '$lib/components/Carousels/GalCarousel.svelte';
+
+	import { Icon, Cake, Heart, Identification } from 'svelte-hero-icons';
 	import { TabGroup, Tab } from '@skeletonlabs/skeleton';
 
 	let tabSet: number = 0;
@@ -9,7 +14,11 @@
 	const genethliaS = data.simeraGenethlia;
 	const genethliaA = data.anerxomenaGenethlia;
 
-	
+	const deltioYgiasL = data.deltioYgiasL;
+	const deltioYgiasE = data.deltioYgiasE;
+
+	const galL = data.galL;
+	const galE = data.galE;
 </script>
 
 <TabGroup
@@ -21,26 +30,38 @@
 	class=" w-full p-3 "
 >
 	<Tab bind:group={tabSet} name="tab1" value={0} class="w-32">
-		<svelte:fragment slot="lead"><div class="flex justify-center"><Icon src={Cake} class="flex w-5 h-5 items-cente" /></div></svelte:fragment>
+		<svelte:fragment slot="lead"
+			><div class="flex justify-center">
+				<Icon src={Cake} class="flex w-5 h-5 items-cente" />
+			</div></svelte:fragment
+		>
 		<span>Γενέθλια</span>
 	</Tab>
 	<Tab bind:group={tabSet} name="tab2" value={1} class="w-32"
-		><svelte:fragment slot="lead"><div class="flex justify-center"><Icon src={Heart} class="w-5 h-5" /></div></svelte:fragment>
+		><svelte:fragment slot="lead"
+			><div class="flex justify-center"><Icon src={Heart} class="w-5 h-5" /></div></svelte:fragment
+		>
 		<span>Δελτίο Υγείας</span></Tab
 	>
 	<Tab bind:group={tabSet} name="tab3" value={2} class="w-32"
-		><svelte:fragment slot="lead" ><div class="flex justify-center"><Icon src={Identification} class="w-5 h-5 "/></div></svelte:fragment>
+		><svelte:fragment slot="lead"
+			><div class="flex justify-center">
+				<Icon src={Identification} class="w-5 h-5 " />
+			</div></svelte:fragment
+		>
 		<span>Gal</span></Tab
 	>
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
 			<GenethliaS {genethliaS} />
-			<GenethliaA {genethliaA} />
+			<GenethliaE {genethliaA} />
 		{:else if tabSet === 1}
-			(tab panel 2 contents)
+			<DeltioYgiasLCarousel {deltioYgiasL} />
+			<DeltioYgiasECarousel {deltioYgiasE} />
 		{:else if tabSet === 2}
-			(tab panel 3 contents)
+			<GalLCarousel {galL}/>
+			<GalCarousel {galE}/>
 		{/if}
 	</svelte:fragment>
 	<!-- ... -->

@@ -3,11 +3,11 @@
 	import MathitisCard from '$lib/components/Cards/MathitisCard.svelte';
 	let elemCarousel: HTMLDivElement;
 
-	export let genethliaS: any;
+	export let galL: any;
 
 	const show = {
 		kinito: true,
-		genethlia: true
+		gal:true,
 	};
 
 	const apousiologio = false;
@@ -29,19 +29,19 @@
 	}
 </script>
 
-<h1 class="text-xl mb-3">Σήμερα</h1>
+<h1 class="text-xl mb-3">Ληγμένα</h1>
 <div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center mb-4">
 	<!-- Button: Left -->
 	<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
 		<Icon src={ArrowLeft} class="w-4 h-4 mr-1" />
 	</button>
 	<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
-		{#each genethliaS as mathitis}
+		{#each galL as mathitis}
 			<MathitisCard
 				{apousiologio}
 				{mathitis}
 				{show}
-				style="bg-gradient-to-br variant-gradient-warning-error"
+				style="variant-ghost-error"
 			/>
 		{/each}
 	</div>
