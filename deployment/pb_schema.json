@@ -1,0 +1,899 @@
+[
+  {
+    "id": "k3dqq34b99vf4wh",
+    "name": "mathites",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "ezfaeka7",
+        "name": "onoma",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "wrebkx0i",
+        "name": "epitheto",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "jvjypihl",
+        "name": "fotografia",
+        "type": "file",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "maxSize": 5242880,
+          "mimeTypes": [],
+          "thumbs": [],
+          "protected": true
+        }
+      },
+      {
+        "system": false,
+        "id": "sdeejorq",
+        "name": "kinito",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "mxexf3ri",
+        "name": "diefthinsi",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "mwcekcmm",
+        "name": "tk",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "zg3htvqw",
+        "name": "perioxi",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "vsnf9c6i",
+        "name": "tilefonoS",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "7a0tigds",
+        "name": "tilefonoE",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "unwg4i3m",
+        "name": "genethlia",
+        "type": "date",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": "",
+          "max": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "e96te7r7",
+        "name": "epankelma",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "0ptgatt2",
+        "name": "enarksi",
+        "type": "date",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": "",
+          "max": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "asrpox3j",
+        "name": "email",
+        "type": "email",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "exceptDomains": [],
+          "onlyDomains": []
+        }
+      },
+      {
+        "system": false,
+        "id": "wjppniah",
+        "name": "energos",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      }
+    ],
+    "indexes": [],
+    "listRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "createRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "updateRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "deleteRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "options": {}
+  },
+  {
+    "id": "_pb_users_auth_",
+    "name": "users",
+    "type": "auth",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "users_name",
+        "name": "name",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "users_avatar",
+        "name": "avatar",
+        "type": "file",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "maxSize": 5242880,
+          "mimeTypes": [
+            "image/jpeg",
+            "image/png",
+            "image/svg+xml",
+            "image/gif",
+            "image/webp"
+          ],
+          "thumbs": null,
+          "protected": false
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "id = @request.auth.id",
+    "viewRule": "id = @request.auth.id",
+    "createRule": "",
+    "updateRule": "id = @request.auth.id",
+    "deleteRule": "id = @request.auth.id",
+    "options": {
+      "allowEmailAuth": false,
+      "allowOAuth2Auth": false,
+      "allowUsernameAuth": true,
+      "exceptEmailDomains": null,
+      "manageRule": null,
+      "minPasswordLength": 8,
+      "onlyEmailDomains": null,
+      "requireEmail": false
+    }
+  },
+  {
+    "id": "ngdvs1tmm3nsbue",
+    "name": "provlimata",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "rlamjcow",
+        "name": "mathitis",
+        "type": "relation",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "k3dqq34b99vf4wh",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      },
+      {
+        "system": false,
+        "id": "kugacrsp",
+        "name": "kardiaka",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "tvyrhf6q",
+        "name": "kardiakaL",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "7qr93vlp",
+        "name": "asthma",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "5fqpusal",
+        "name": "asthmaL",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "do7ymkzd",
+        "name": "lipothimia",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "zqgo9f2v",
+        "name": "lipothimiaL",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "yps4zvf3",
+        "name": "allo",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "l7hgx9de",
+        "name": "alloL",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      }
+    ],
+    "indexes": [
+      "CREATE UNIQUE INDEX `idx_Aeo0I1A` ON `provlimata` (`mathitis`)"
+    ],
+    "listRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "createRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "updateRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "deleteRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "options": {}
+  },
+  {
+    "id": "w7g3bfar163i0m4",
+    "name": "deltia",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "zbwtemcq",
+        "name": "mathitis",
+        "type": "relation",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "k3dqq34b99vf4wh",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      },
+      {
+        "system": false,
+        "id": "m6eyd4mw",
+        "name": "fotografia_adia",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "jr6jtquw",
+        "name": "forma_GDPR",
+        "type": "file",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "maxSize": 5242880,
+          "mimeTypes": [],
+          "thumbs": [],
+          "protected": true
+        }
+      },
+      {
+        "system": false,
+        "id": "yihgouuy",
+        "name": "deltio_Igias",
+        "type": "date",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": "",
+          "max": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "nv9ffbrl",
+        "name": "gal_Number",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "9urlsn7w",
+        "name": "gal_Date",
+        "type": "date",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": "",
+          "max": ""
+        }
+      }
+    ],
+    "indexes": [
+      "CREATE UNIQUE INDEX `idx_eLuyPKA` ON `deltia` (`mathitis`)"
+    ],
+    "listRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "createRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "updateRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "deleteRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "options": {}
+  },
+  {
+    "id": "n78qna4nyxx5xga",
+    "name": "epafes",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "g2nqrafe",
+        "name": "mathitis",
+        "type": "relation",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "k3dqq34b99vf4wh",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      },
+      {
+        "system": false,
+        "id": "ioa5uvbw",
+        "name": "sxesi",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "ennkyjzd",
+        "name": "paralavi",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "jwdtbzlz",
+        "name": "onoma",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "qhwejh2e",
+        "name": "epitheto",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "vs3wppm5",
+        "name": "epankelma",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "ha8ml43n",
+        "name": "tilefono",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": 8,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "yvg2rlgg",
+        "name": "tilefonoE",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": 8,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "aj3yovww",
+        "name": "email",
+        "type": "email",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "exceptDomains": null,
+          "onlyDomains": null
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "createRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "updateRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "deleteRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "options": {}
+  },
+  {
+    "id": "yo42cjrpazrtr8t",
+    "name": "eksetasis",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "o3orlslq",
+        "name": "mathitis",
+        "type": "relation",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "k3dqq34b99vf4wh",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      },
+      {
+        "system": false,
+        "id": "otygvvbz",
+        "name": "date",
+        "type": "date",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": "",
+          "max": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "0nfckzvt",
+        "name": "leptomeries",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "ccs7ahk3",
+        "name": "epitixia",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      }
+    ],
+    "indexes": [],
+    "listRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "createRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "updateRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "deleteRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "options": {}
+  },
+  {
+    "id": "nfgvrut9vav6n04",
+    "name": "programa",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "1cit8jkw",
+        "name": "mathitis",
+        "type": "relation",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "k3dqq34b99vf4wh",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      },
+      {
+        "system": false,
+        "id": "rqadouth",
+        "name": "mera",
+        "type": "relation",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "jw7jawsdggb665d",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      }
+    ],
+    "indexes": [
+      "CREATE UNIQUE INDEX `idx_cO9KHZe` ON `programa` (\n  `mathitis`,\n  `mera`\n)"
+    ],
+    "listRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "createRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "updateRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "deleteRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "options": {}
+  },
+  {
+    "id": "jw7jawsdggb665d",
+    "name": "meres",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "xqkshe97",
+        "name": "sort",
+        "type": "number",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "aem5p6bk",
+        "name": "mera",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "zmnrzgba",
+        "name": "start",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "7essdfre",
+        "name": "stop",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      }
+    ],
+    "indexes": [
+      "CREATE UNIQUE INDEX `idx_b4tECRM` ON `meres` (\n  `mera`,\n  `start`,\n  `stop`\n)"
+    ],
+    "listRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "createRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "updateRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "deleteRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "options": {}
+  },
+  {
+    "id": "ldsjdbyypm0f9c6",
+    "name": "parousies",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "g1rfqm0i",
+        "name": "mathitis",
+        "type": "relation",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "k3dqq34b99vf4wh",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
+        }
+      },
+      {
+        "system": false,
+        "id": "di1fhbmd",
+        "name": "apousiologioId",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "0gzrvykx",
+        "name": "minas",
+        "type": "number",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      },
+      {
+        "system": false,
+        "id": "j8wdw9db",
+        "name": "xronos",
+        "type": "number",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      }
+    ],
+    "indexes": [
+      "CREATE UNIQUE INDEX `idx_3ywNVYT` ON `parousies` (\n  `mathitis`,\n  `apousiologioId`\n)"
+    ],
+    "listRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "createRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "updateRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "deleteRule": "@request.auth.id != \"\" && @request.auth.verified = true",
+    "options": {}
+  }
+]
