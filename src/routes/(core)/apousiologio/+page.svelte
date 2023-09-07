@@ -23,8 +23,10 @@
 		value = new Date();
 		changeDate();
 	}
+	const month = new Date().getMonth();
+	let year = new Date().getFullYear();
 
-	console.log(value);
+	if (month < 8) year--;
 </script>
 
 <div class="flex flex-wrap">
@@ -35,7 +37,7 @@
 				bind:value
 				locale="el-GR"
 				max={new Date()}
-				min={new Date(new Date().getFullYear(), 8, 1)}
+				min={new Date(year, 8, 1)}
 				weekStart={1}
 				headers
 				on:change={changeDate}
