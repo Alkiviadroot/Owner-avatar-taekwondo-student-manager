@@ -41,7 +41,7 @@
 				{apousiologio}
 				{mathitis}
 				{show}
-				style={mathitis.deltioYgiasM <= 1000000 ? 'variant-ghost-warning' : 'variant-ghost-surface'}
+				style={mathitis.deltioYgiasM <= 100 ? 'variant-ghost-warning' : 'variant-ghost-surface'}
 			/>
 		{/each}
 	</div>

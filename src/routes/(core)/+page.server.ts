@@ -4,7 +4,7 @@ export const load = async ({ locals }: any,) => {
 
     const d = addHours(new Date(), 3);
     const simera = moment(d).format('MMDD')
-    const simeraFull = moment(d).format('MMDDYYYY')
+    const simeraFull = moment(d).format('YYYYMMDD')
 
 
     const mathites = serializeNonPOJOs(await locals.pb.collection('mathites').getFullList({
@@ -20,8 +20,8 @@ export const load = async ({ locals }: any,) => {
             deltia = await locals.pb.collection('deltia').getFirstListItem('mathitis="' + mathitis.id + '"');
             mathitis.deltioYgias = deltia.deltio_Igias;
             mathitis.gal = deltia.gal_Date;
-            const deltioYgiasM = moment(mathitis.deltioYgias).format('MMDDYYYY');
-            const galM = moment(mathitis.gal).format('MMDDYYYY');
+            const deltioYgiasM = moment(mathitis.deltioYgias).format('YYYYMMDD');
+            const galM = moment(mathitis.gal).format('YYYYMMDD');
             mathitis.deltioYgiasM = parseInt(deltioYgiasM) - parseInt(simeraFull);
             mathitis.galM = parseInt(galM) - parseInt(simeraFull);
         } catch { }
