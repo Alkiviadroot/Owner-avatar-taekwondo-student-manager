@@ -75,7 +75,8 @@ export const load = async ({ locals, params }: any) => {
 		);
 		mathitisObj.parousia = false;
 		mathitisObj.fotografiaView = locals.pb.files.getUrl(mathitisObj, mathitisObj.fotografia, {
-			token: fileToken
+			'token': fileToken,
+			'thumb': '100x100'
 		});
 
 		parousies.find((o: any, i: any) => {
@@ -95,7 +96,8 @@ export const load = async ({ locals, params }: any) => {
 			await locals.pb.collection('mathites').getOne(mathitis.mathitis)
 		);
 		mathitisObj.fotografiaView = locals.pb.files.getUrl(mathitisObj, mathitisObj.fotografia, {
-			token: fileToken
+			'token': fileToken,
+			'thumb': '100x100'
 		});
 		mathitisObj.parousia = true;
 		mathitesList.push(mathitisObj);
@@ -116,7 +118,7 @@ export const actions = {
 		for (const parousia of records)
 			try {
 				await locals.pb.collection('parousies').delete(parousia.id);
-			} catch {}
+			} catch { }
 
 		const formData = new FormData();
 		formData.append('apousiologioId', params.apousiologioId);
