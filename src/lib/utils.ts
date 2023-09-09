@@ -1,6 +1,4 @@
 import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
-import { redirect } from '@sveltejs/kit';
-
 
 export const serializeNonPOJOs = (obj: any) => {
 	return structuredClone(obj);

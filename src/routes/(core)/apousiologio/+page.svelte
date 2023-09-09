@@ -1,9 +1,15 @@
 <script lang="ts">
 	import { CalendarView } from 'fluent-svelte';
-	let value = new Date();
+	const today = new Date();
+	let value = today;
 	let Currentmera: string = '';
 	let url: string = '';
+
 	export let data: any;
+
+	const month = today.getMonth();
+	let year = today.getFullYear();
+	if (month < 8) year--;
 
 	changeDate();
 
@@ -20,13 +26,9 @@
 	}
 
 	function changeToday(): void {
-		value = new Date();
+		value = today;
 		changeDate();
 	}
-	const month = new Date().getMonth();
-	let year = new Date().getFullYear();
-
-	if (month < 8) year--;
 </script>
 
 <div class="flex flex-wrap">
@@ -35,7 +37,7 @@
 			<CalendarView
 				bind:value
 				locale="el-GR"
-				max={new Date()}
+				max={today}
 				min={new Date(year, 8, 1)}
 				weekStart={1}
 				headers

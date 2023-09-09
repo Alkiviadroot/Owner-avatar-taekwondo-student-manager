@@ -1,14 +1,17 @@
 version: '3.7'
 
 services:
-  pocketbase:
-    container_name: pocketbase
-    image: augustodelg/pocketbase:latest
+  tsm:
+    container_name: tsm
+    image: alkiviadroot/taekwondo-student-manager:latest
     restart: unless-stopped
     ports:
-      - 8090:8090
+      - "8090:8090"
+      - "3000:3000"
     volumes:
-      - pocketbase:/pb_data
+      - ./pocketbase:/pb_data
+    env_file:
+      - ../.env
 
   tunnel:
     container_name: cloudflared-tunnel-pocketbase
@@ -17,7 +20,3 @@ services:
     command: tunnel run
     env_file:
       - ../.env
-
-volumes:
-  pocketbase:
-   external: true
