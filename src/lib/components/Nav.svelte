@@ -15,7 +15,6 @@
 	export let initials: string;
 	export let avatar: string;
 
-
 	function drawerClose(): void {
 		drawerStore.close();
 	}
@@ -67,7 +66,7 @@
 			title: 'Μέρες',
 			icon: SquaresPlus,
 			href: '/meres'
-		},
+		}
 	];
 </script>
 
@@ -79,7 +78,10 @@
 					id={navItem.id}
 					href={navItem.href}
 					on:click={drawerClose}
-					class="font-medium {$page.url.pathname.substring(0,getPosition($page.url.pathname, '/', 2)) === navItem.href
+					class="font-medium {$page.url.pathname.substring(
+						0,
+						getPosition($page.url.pathname, '/', 2)
+					) === navItem.href
 						? '!bg-primary-500'
 						: ''}"
 				>

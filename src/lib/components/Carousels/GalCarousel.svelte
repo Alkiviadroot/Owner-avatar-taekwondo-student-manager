@@ -37,12 +37,7 @@
 	</button>
 	<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
 		{#each galE as mathitis}
-			<MathitisCard
-				{apousiologio}
-				{mathitis}
-				{show}
-				style= 'variant-ghost-surface'
-			/>
+			<MathitisCard {apousiologio} {mathitis} {show} style="variant-ghost-surface" />
 		{/each}
 	</div>
 	<!-- Button: Right -->

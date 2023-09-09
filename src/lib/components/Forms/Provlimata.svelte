@@ -167,7 +167,9 @@
 		<input hidden id="allo" name="allo" type="text" value={allo ? 'true' : 'false'} />
 	</div>
 
-	<button class="btn variant-filled-success float-right mt-10 mb-7" id="submitProvlimata" type="submit"
-		>Αποθήκευση →</button
+	<button
+		class="btn variant-filled-success float-right mt-10 mb-7"
+		id="submitProvlimata"
+		type="submit">Αποθήκευση →</button
 	>
 </form>

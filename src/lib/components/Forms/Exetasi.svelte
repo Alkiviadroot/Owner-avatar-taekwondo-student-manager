@@ -59,7 +59,7 @@
 		<span class="inline-block w-[100px] text-left">{epitixia ? 'Επιτυχία' : 'Αποτυχία'}</span>
 	</SlideToggle>
 
-    <input hidden id="epitixia" name="epitixia" type="text" value={epitixia ? 'true' : 'false'} />
+	<input hidden id="epitixia" name="epitixia" type="text" value={epitixia ? 'true' : 'false'} />
 
 	<button
 		class="btn variant-filled-success float-right mt-5 mb-7"

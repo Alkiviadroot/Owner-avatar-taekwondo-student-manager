@@ -1,5 +1,5 @@
 <script lang="ts">
-		export let form;
+	export let form;
 </script>
 
 <section class="container h-full mx-auto flex justify-center items-center">
@@ -32,8 +32,8 @@
 				</div>
 
 				{#if form?.notVerified || form?.notValid}
-				<br/>
-				<h3 class="alert-message  variant-ghost-error rounded-full p-1">{form?.message}</h3>
+					<br />
+					<h3 class="alert-message variant-ghost-error rounded-full p-1">{form?.message}</h3>
 				{/if}
 			</form>
 		</div>

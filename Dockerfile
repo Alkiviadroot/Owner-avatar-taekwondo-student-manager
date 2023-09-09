@@ -7,6 +7,7 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 COPY . .
+RUN cp -f ./deployment/svelte.config.js ./svelte.config.js
 RUN npm run build
 RUN npm ci --prod
 

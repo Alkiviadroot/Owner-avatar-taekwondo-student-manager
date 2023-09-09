@@ -6,15 +6,15 @@ services:
     image: alkiviadroot/taekwondo-student-manager:latest
     restart: unless-stopped
     ports:
-      - "8090:8090"
-      - "3000:3000"
+      - '8090:8090'
+      - '3000:3000'
     volumes:
       - ./pocketbase:/pb_data
     env_file:
       - ../.env
 
   tunnel:
-    container_name: cloudflared-tunnel-pocketbase
+    container_name: cloudflared-tunnel
     image: cloudflare/cloudflared
     restart: unless-stopped
     command: tunnel run

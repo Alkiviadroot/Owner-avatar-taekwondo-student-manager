@@ -31,7 +31,7 @@
 
 	export let data: any;
 	const mathitis = data.profile;
-	let tabSet: number = 0;
+	let tabSet = 0;
 </script>
 
 <div class="flex justify-center p-2 mb-7">
@@ -108,9 +108,9 @@
 		{:else if tabSet === 3}
 			<Epafes {data} />
 		{:else if tabSet === 4}
-			<Programa {data}/>
+			<Programa {data} />
 		{:else if tabSet === 5}
-			<Eksetasi {data}/>
+			<Eksetasi {data} />
 		{:else if tabSet === 6}
 			(tab panel 7 contents)
 		{/if}

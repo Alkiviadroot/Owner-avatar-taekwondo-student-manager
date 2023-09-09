@@ -236,20 +236,21 @@
 				<small class="variant-filled-error p-1 px-2 rounded-full ml-2">⚠ {$errors.fotografia}</small
 				>
 			{/if}
-			
+
 			<div class="input-group input-group-divider grid-cols-[1fr_auto]">
 				<input
-				class="input"
-				id="fotografia"
-				name="fotografia"
-				type="file"
-				bind:value={$form.fotografia}
-				{...$constraints.fotografia}
-			/>
+					class="input"
+					id="fotografia"
+					name="fotografia"
+					type="file"
+					bind:value={$form.fotografia}
+					{...$constraints.fotografia}
+				/>
 				<button type="button" class="btn variant-filled-error" on:click={profileRemove}
 					><Icon src={XCircle} class="w-5 h-5" /></button
 				>
-		</label>
+			</div></label
+		>
 
 		<!-- --- -->
 		<label class="label">

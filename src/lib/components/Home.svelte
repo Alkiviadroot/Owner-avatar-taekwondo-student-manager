@@ -9,7 +9,7 @@
 	import { Icon, Cake, Heart, Identification } from 'svelte-hero-icons';
 	import { TabGroup, Tab } from '@skeletonlabs/skeleton';
 
-	let tabSet: number = 0;
+	let tabSet = 0;
 	export let data;
 	const genethliaS = data.simeraGenethlia;
 	const genethliaA = data.anerxomenaGenethlia;
@@ -60,8 +60,8 @@
 			<DeltioYgiasLCarousel {deltioYgiasL} />
 			<DeltioYgiasECarousel {deltioYgiasE} />
 		{:else if tabSet === 2}
-			<GalLCarousel {galL}/>
-			<GalCarousel {galE}/>
+			<GalLCarousel {galL} />
+			<GalCarousel {galE} />
 		{/if}
 	</svelte:fragment>
 	<!-- ... -->

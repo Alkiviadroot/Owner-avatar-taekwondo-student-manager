@@ -6,7 +6,7 @@
 	let color1: string;
 	let color2: string;
 	let style: string;
-	let dans: string = '_';
+	let dans = '_';
 
 	if (zoni == '0') {
 		style = 'invisible';

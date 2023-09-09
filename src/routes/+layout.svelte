@@ -11,8 +11,7 @@
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
 	// Fluent
-	import "fluent-svelte/theme.css";
-
+	import 'fluent-svelte/theme.css';
 </script>
 
-<slot/>
+<slot />

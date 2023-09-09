@@ -7,7 +7,7 @@
 
 	const show = {
 		kinito: true,
-		gal:true,
+		gal: true
 	};
 
 	const apousiologio = false;
@@ -37,12 +37,7 @@
 	</button>
 	<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
 		{#each galL as mathitis}
-			<MathitisCard
-				{apousiologio}
-				{mathitis}
-				{show}
-				style="variant-ghost-error"
-			/>
+			<MathitisCard {apousiologio} {mathitis} {show} style="variant-ghost-error" />
 		{/each}
 	</div>
 	<!-- Button: Right -->

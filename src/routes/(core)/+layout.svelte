@@ -12,7 +12,7 @@
 	} from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 
-	let phone: boolean = false;
+	let phone = false;
 	onMount(() => {
 		const screenWidth = window.screen.width;
 		if (screenWidth <= 500) phone = true;
@@ -63,10 +63,10 @@
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
-	
+
 	<svelte:fragment slot="sidebarLeft"><Nav {initials} {avatar} /></svelte:fragment>
 
-	<div class="container max-w-full max-auto  {phone ? 'p-3' : 'p-10'}">
+	<div class="container max-w-full max-auto {phone ? 'p-3' : 'p-10'}">
 		<slot />
 	</div>
 </AppShell>

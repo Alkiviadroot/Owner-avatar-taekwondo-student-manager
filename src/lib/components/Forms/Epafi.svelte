@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SlideToggle,modalStore } from '@skeletonlabs/skeleton';
+	import { SlideToggle, modalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { epafes } from '$lib/schemas';
@@ -36,7 +36,7 @@
 		response: (r: boolean) => {
 			if (r == true) {
 				var epafiDeleteForm = <HTMLFormElement>document.getElementById('epafiDeleteForm');
-					epafiDeleteForm.submit();
+				epafiDeleteForm.submit();
 			}
 		}
 	};
@@ -158,7 +158,6 @@
 	</div>
 	<input hidden id="paralavi" name="paralavi" type="text" value={paralavi ? 'true' : 'false'} />
 
-	
 	<button class="btn variant-filled-success float-right mt-10 mb-7" id="submitEpafi" type="submit"
 		>Αποθήκευση
 	</button>

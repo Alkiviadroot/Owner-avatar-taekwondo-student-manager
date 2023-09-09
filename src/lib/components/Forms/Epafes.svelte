@@ -9,7 +9,7 @@
 	let epafesR: any = data.records;
 	const mathitisId = data.mathitisId;
 
-	let paralavi: boolean = false;
+	let paralavi = false;
 
 	const { form, errors, constraints } = superForm(data.epafesForm, {
 		taintedMessage: 'Are you sure you want leave??',
@@ -35,7 +35,7 @@
 		target: 'popupSxesi',
 		placement: 'bottom'
 	};
-	let sxesiValue: string = '';
+	let sxesiValue = '';
 </script>
 
 <EpafesCarousel {epafesR} />

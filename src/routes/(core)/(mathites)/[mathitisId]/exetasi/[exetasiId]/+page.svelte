@@ -15,7 +15,7 @@
 		response: (r: boolean) => {
 			if (r == true) {
 				var exetasiDeleteForm = <HTMLFormElement>document.getElementById('exetasiDeleteForm');
-					exetasiDeleteForm.submit();
+				exetasiDeleteForm.submit();
 			}
 		}
 	};
@@ -25,7 +25,7 @@
 	}
 </script>
 
-<Exetasi {data}/>
+<Exetasi {data} />
 
 <button class="btn variant-filled-error float-left mt-10 mb-7" on:click={deleteModal} type="button">
 	<Icon src={XCircle} class="w-6 h-6" />

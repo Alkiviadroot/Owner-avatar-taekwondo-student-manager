@@ -19,10 +19,10 @@
 		fotografiaAdia = false;
 		$form.fotografia_adia = 'false';
 	} else {
-		if ($form.fotografia_adia){
+		if ($form.fotografia_adia) {
 			fotografiaAdia = true;
-			$form.fotografia_adia = 'true'
-		} 
+			$form.fotografia_adia = 'true';
+		}
 	}
 
 	function fotografiaAdiaC(): void {
@@ -48,10 +48,9 @@
 			}
 		} catch (e) {}
 	}
-
 </script>
 
-<form id="deltiaForm" action="?/deltia" method="POST" enctype="multipart/form-data" >
+<form id="deltiaForm" action="?/deltia" method="POST" enctype="multipart/form-data">
 	<h1 class="text-3xl font-bold mb-4">Δελτία</h1>
 
 	<div class="mb-3">

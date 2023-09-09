@@ -2,8 +2,8 @@
 	import { CalendarView } from 'fluent-svelte';
 	const today = new Date();
 	let value = today;
-	let Currentmera: string = '';
-	let url: string = '';
+	let Currentmera = '';
+	let url = '';
 
 	export let data: any;
 

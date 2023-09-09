@@ -88,7 +88,14 @@
 			title: 'Διαγραφή',
 			buttonTextCancel: 'Ακύρωση',
 			buttonTextConfirm: 'Διαγραφή',
-			body: 'Είστε βέβαιοι ότι θέλετε να διαγράψετε ( '+mera.mera+" "+mera.start+" - "+mera.stop +' ) για πάντα?',
+			body:
+				'Είστε βέβαιοι ότι θέλετε να διαγράψετε ( ' +
+				mera.mera +
+				' ' +
+				mera.start +
+				' - ' +
+				mera.stop +
+				' ) για πάντα?',
 			response: (r: boolean) => {
 				if (r == true) {
 					var meraDeleteForm = <HTMLFormElement>document.getElementById('DeleteForm' + mera.id);
@@ -129,14 +136,14 @@
 					? ''
 					: 'invisible'}"><Icon src={XCircle} class="w-6 h-6" /></button
 			>
-			<div  class="card p-4 m-3 variant-outline-primary text-center">
+			<div class="card p-4 m-3 variant-outline-primary text-center">
 				<h1>{mera.mera}</h1>
 				{mera.start} - {mera.stop}
 			</div>
 		</div>
-		<form id="DeleteForm{mera.id}" action="?/meraDelete" method="POST" hidden >
-        <input type="text" value="{mera.id}" id="idMera" name="idMera" hidden>
-        </form>
+		<form id="DeleteForm{mera.id}" action="?/meraDelete" method="POST" hidden>
+			<input type="text" value={mera.id} id="idMera" name="idMera" hidden />
+		</form>
 	{/each}
 </div>
 

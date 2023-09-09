@@ -13,21 +13,19 @@ export const handle = async ({ event, resolve }: any) => {
 		event.locals.user = null;
 	}
 
-	if (!event.url.pathname.startsWith("/login")) {
+	if (!event.url.pathname.startsWith('/login')) {
 		if (!event.locals.user) {
-			throw redirect(303, "/login")
+			throw redirect(303, '/login');
 		} else {
 			try {
-				let record = await event.locals.pb.collection('users').getOne(event.locals.user.id);
+				const record = await event.locals.pb.collection('users').getOne(event.locals.user.id);
 				if (!record.verified) {
 					event.locals.pb.authStore.clear();
 					event.locals.user = null;
 					throw redirect(303, '/login');
 				}
-			} catch { }
-
+			} catch {}
 		}
-
 	}
 
 	const response = await resolve(event);

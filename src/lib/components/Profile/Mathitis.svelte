@@ -83,7 +83,7 @@
 
 		<div>
 			{#if mathitis.epankelma != ''}
-			<p class="ml-6 italic mt-7 text-primary-500">Επάγγελμα</p>
+				<p class="ml-6 italic mt-7 text-primary-500">Επάγγελμα</p>
 				<span class="inline-flex items-baseline">
 					<Icon src={Briefcase} class="w-5 h-5 mr-1 " />
 					<span>
@@ -96,7 +96,7 @@
 					{/if}
 				</span>
 			{:else if mathitis.epankelma == '' && mathitis.tilefonoE != undefined}
-			<p class="ml-6 italic mt-7 text-primary-500">Τηλέφωνο Επάγγελματος</p>
+				<p class="ml-6 italic mt-7 text-primary-500">Τηλέφωνο Επάγγελματος</p>
 				<span class="inline-flex items-baseline">
 					<Icon src={Briefcase} class="w-5 h-5 mr-1" />
 					<a href="tel:{mathitis.tilefonoE}">
@@ -107,7 +107,7 @@
 		</div>
 		<div>
 			{#if mathitis.genethliaRaw != ''}
-			<p class="ml-6 italic mt-7 text-primary-500">Γενέθλια</p>
+				<p class="ml-6 italic mt-7 text-primary-500">Γενέθλια</p>
 				<span class="inline-flex items-baseline">
 					<Icon src={Cake} class="w-5 h-5 mr-1" />
 					<span>
@@ -118,7 +118,7 @@
 		</div>
 		<div>
 			{#if mathitis.email != undefined}
-			<p class="ml-6 italic mt-7 text-primary-500">Email</p>
+				<p class="ml-6 italic mt-7 text-primary-500">Email</p>
 				<span class="inline-flex items-baseline">
 					<Icon src={Envelope} class="w-5 h-5 mr-1" />
 					<a href="mailto: {mathitis.email}">
@@ -131,7 +131,7 @@
 		</div>
 		<div>
 			{#if mathitis.enarksiRaw != ''}
-			<p class="ml-6 italic mt-7 text-primary-500">Έναρξη Μαθημάτων</p>
+				<p class="ml-6 italic mt-7 text-primary-500">Έναρξη Μαθημάτων</p>
 				<span class="inline-flex items-baseline">
 					<Icon src={Calendar} class="w-5 h-5 mr-1" />
 					<span>
