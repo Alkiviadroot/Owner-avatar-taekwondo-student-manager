@@ -36,11 +36,11 @@ export const actions = {
 		exetasiForm.data.mathitis = params.mathitisId;
 
 		await locals.pb.collection('eksetasis').update(params.exetasiId, exetasiForm.data);
-		throw redirect(303, '/' + params.mathitisId);
+		throw redirect(303, '/' + params.mathitisId+'?/exetasi');
 	},
 
 	exetasiDelete: async ({ locals, params }: any) => {
 		await locals.pb.collection('eksetasis').delete(params.exetasiId);
-		throw redirect(303, '/' + params.mathitisId);
+		throw redirect(303, '/' + params.mathitisId+'?/exetasi');
 	}
 };

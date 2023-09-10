@@ -39,11 +39,11 @@ export const actions = {
 		epafesForm.data.mathitis = params.mathitisId;
 		epafesForm.data.sxesi = sxesi;
 		await locals.pb.collection('epafes').update(params.epafiId, epafesForm.data);
-		throw redirect(303, '/' + params.mathitisId);
+		throw redirect(303, '/' + params.mathitisId+'?/epafes');
 	},
 
 	epafiDelete: async ({ locals, params }: any) => {
 		await locals.pb.collection('epafes').delete(params.epafiId);
-		throw redirect(303, '/' + params.mathitisId);
+		throw redirect(303, '/' + params.mathitisId+'?/epafes');
 	}
 };

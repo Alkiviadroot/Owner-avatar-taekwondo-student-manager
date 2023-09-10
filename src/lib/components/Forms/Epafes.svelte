@@ -172,8 +172,10 @@
 	<button class="btn variant-filled-success float-left mt-10 mb-7" id="submitEpafi" type="submit"
 		>Αποθήκευση
 	</button>
-	<a class="btn variant-filled-primary float-right mt-10 mb-7" id="telos" href="/{mathitisId}"
-		>Τέλος →</a
+	<a
+		class="btn variant-filled-primary float-right mt-10 mb-7"
+		id="telos"
+		href="/{mathitisId}?/epafes">Τέλος →</a
 	>
 </form>
 

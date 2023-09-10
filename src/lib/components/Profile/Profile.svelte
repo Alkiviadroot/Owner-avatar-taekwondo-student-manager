@@ -10,6 +10,7 @@
 
 	import { Avatar, TabGroup, Tab } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import {
 		Icon,
 		Phone,
@@ -32,6 +33,16 @@
 	export let data: any;
 	const mathitis = data.profile;
 	let tabSet = 0;
+	const pathname = $page.url.href;
+	console.log(pathname);
+	
+	if (pathname.includes('?/provlimata')) tabSet = 1;
+	else if (pathname.includes('?/deltia')) tabSet = 2;
+	else if (pathname.includes('?/epafes')) tabSet = 3;
+	else if (pathname.includes('?/programaSave')) tabSet = 4;
+	else if (pathname.includes('?/exetasi')) tabSet = 5;
+
+
 </script>
 
 <div class="flex justify-center p-2 mb-7">
