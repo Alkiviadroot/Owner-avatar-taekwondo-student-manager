@@ -1,7 +1,6 @@
 import { redirect, fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 import { mathitis, provlimata, deltia, exetasi } from '$lib/schemas';
-import { serializeNonPOJOs } from '$lib/utils.js';
 import moment from 'moment';
 
 let provlimataNotAvailable = false;
@@ -15,7 +14,7 @@ export const load = async ({ locals, params }: any) => {
 	// MathitisForm
 	let profile: any = [];
 	try {
-		profile = serializeNonPOJOs(await locals.pb.collection('mathites').getOne(mathitisId));
+		profile = await locals.pb.collection('mathites').getOne(mathitisId);
 	} catch {
 		throw redirect(307, '/');
 	}
@@ -37,9 +36,7 @@ export const load = async ({ locals, params }: any) => {
 	// ProvlimataForm
 	let provlimataR: any = [];
 	try {
-		provlimataR = serializeNonPOJOs(
-			await locals.pb.collection('provlimata').getFirstListItem('mathitis="' + mathitisId + '"')
-		);
+		provlimataR = await locals.pb.collection('provlimata').getFirstListItem('mathitis="' + mathitisId + '"');
 		provlimataId = provlimataR.id;
 		provlimataNotAvailable = false;
 	} catch {
@@ -50,9 +47,8 @@ export const load = async ({ locals, params }: any) => {
 	// DeltiaForm
 	let deltiaR: any = [];
 	try {
-		deltiaR = serializeNonPOJOs(
-			await locals.pb.collection('deltia').getFirstListItem('mathitis="' + mathitisId + '"')
-		);
+		deltiaR = await locals.pb.collection('deltia').getFirstListItem('mathitis="' + mathitisId + '"');
+
 		deltiId = deltiaR.id;
 		deltiaNotAvailable = false;
 		if (deltiaR.gal_Number == 0) deltiaR.gal_Number = undefined;
@@ -61,7 +57,7 @@ export const load = async ({ locals, params }: any) => {
 		deltiaR.gal_DateRaw = deltiaR.gal_Date;
 		deltiaR.deltio_Igias = moment(deltiaR.deltio_Igias).format('YYYY-MM-DD');
 		deltiaR.gal_Date = moment(deltiaR.gal_Date).format('YYYY-MM-DD');
-		
+
 	} catch {
 		deltiaNotAvailable = true;
 	}
@@ -70,23 +66,21 @@ export const load = async ({ locals, params }: any) => {
 
 	let epafes: any = [];
 	try {
-		epafes = serializeNonPOJOs(
-			await locals.pb.collection('epafes').getFullList({
-				filter: 'mathitis = "' + mathitisId + '"',
-				sort: '-paralavi'
-			})
-		);
+		epafes = await locals.pb.collection('epafes').getFullList({
+			filter: 'mathitis = "' + mathitisId + '"',
+			sort: '-paralavi'
+		});
+
 	} catch {
 		console.log('no record');
 	}
 
 	let exetasis: any = [];
 	try {
-		exetasis = serializeNonPOJOs(
-			await locals.pb.collection('eksetasis').getFullList({
-				filter: 'mathitis = "' + mathitisId + '"'
-			})
-		);
+		exetasis = await locals.pb.collection('eksetasis').getFullList({
+			filter: 'mathitis = "' + mathitisId + '"'
+		});
+
 	} catch {
 		console.log('no record');
 	}
@@ -105,18 +99,15 @@ export const load = async ({ locals, params }: any) => {
 
 	const zoni = exetasiCounter;
 
-	const meresAll = serializeNonPOJOs(
-		await locals.pb.collection('meres').getFullList({
-			sort: 'sort'
-		})
-	);
+	const meresAll = await locals.pb.collection('meres').getFullList({
+		sort: 'sort'
+	})
+
 
 	try {
-		programa = serializeNonPOJOs(
-			await locals.pb.collection('programa').getFullList({
-				filter: 'mathitis = "' + mathitisId + '"'
-			})
-		);
+		programa = await locals.pb.collection('programa').getFullList({
+			filter: 'mathitis = "' + mathitisId + '"'
+		});
 	} catch {
 		console.log('no record');
 	}
@@ -247,7 +238,6 @@ export const actions = {
 	deltia: async ({ request, locals, params }: any) => {
 		const form = await request.formData();
 		const deltiaForm = await superValidate(form, deltia);
-		console.log('teste');
 
 		if (!deltiaForm.valid) {
 			return fail(400, {
@@ -305,7 +295,7 @@ export const actions = {
 		for (const p of programa) {
 			try {
 				await locals.pb.collection('programa').delete(p.id);
-			} catch {}
+			} catch { }
 		}
 		for (const meres of obj) {
 			try {
@@ -313,7 +303,7 @@ export const actions = {
 				formData.append('mathitis', params.mathitisId);
 				formData.append('mera', meres);
 				await locals.pb.collection('programa').create(formData);
-			} catch {}
+			} catch { }
 		}
 	}
 };

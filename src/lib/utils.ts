@@ -1,10 +1,3 @@
-
-export const serializeNonPOJOs = (obj: any) => {
-	return structuredClone(obj);
-};
-
-
-
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 export const generateString = (length: number) => {

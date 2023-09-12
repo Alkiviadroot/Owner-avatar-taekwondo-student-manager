@@ -1,4 +1,3 @@
-import { serializeNonPOJOs } from '$lib/utils.js';
 import { redirect, fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 import { exetasi } from '$lib/schemas';
@@ -10,7 +9,7 @@ export const load = async ({ locals, params }: any) => {
 	let exetasiR = [];
 
 	try {
-		exetasiR = serializeNonPOJOs(await locals.pb.collection('eksetasis').getOne(exetasiId));
+		exetasiR = await locals.pb.collection('eksetasis').getOne(exetasiId);
 	} catch {
 		throw redirect(303, '/' + mathitisId);
 	}

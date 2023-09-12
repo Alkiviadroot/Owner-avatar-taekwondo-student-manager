@@ -1,4 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
+
 export const GET = (async ({ locals, params, setHeaders }) => {
     const fileToken = await locals.pb.files.getToken();
     const mathitisid: string = params.imageId!

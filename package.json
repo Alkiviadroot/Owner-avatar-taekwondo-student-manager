@@ -31,7 +31,7 @@
 		"fluent-svelte": "^1.6.0",
 		"highlight.js": "^11.8.0",
 		"moment": "^2.29.4",
-		"pocketbase": "^0.16.0",
+		"pocketbase": "^0.18.0",
 		"postcss": "^8.4.29",
 		"prettier": "^2.8.8",
 		"prettier-plugin-svelte": "^2.10.1",

@@ -1,7 +1,6 @@
 import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 import { epafes } from '$lib/schemas';
-import { serializeNonPOJOs } from '$lib/utils.js';
 
 export const load = async ({ locals, params }: any) => {
 	const epafesForm = await superValidate(epafes);
@@ -10,12 +9,10 @@ export const load = async ({ locals, params }: any) => {
 	let records: any = [];
 
 	try {
-		records = serializeNonPOJOs(
-			await locals.pb.collection('epafes').getFullList({
-				filter: 'mathitis = "' + params.mathitisId + '"',
-				sort: '-paralavi'
-			})
-		);
+		records = await locals.pb.collection('epafes').getFullList({
+			filter: 'mathitis = "' + params.mathitisId + '"',
+			sort: '-paralavi'
+		});
 	} catch {
 		console.log('no record');
 	}

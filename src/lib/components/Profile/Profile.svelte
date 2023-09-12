@@ -34,7 +34,6 @@
 	const mathitis = data.profile;
 	let tabSet = 0;
 	const pathname = $page.url.href;
-	console.log(pathname);
 	
 	if (pathname.includes('?/provlimata')) tabSet = 1;
 	else if (pathname.includes('?/deltia')) tabSet = 2;

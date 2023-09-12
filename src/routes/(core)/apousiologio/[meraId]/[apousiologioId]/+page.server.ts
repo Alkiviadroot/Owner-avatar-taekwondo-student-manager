@@ -1,8 +1,7 @@
-import { serializeNonPOJOs } from '$lib/utils';
-
 let meraA: string;
 let minas: string;
 let xronos: string;
+
 export const load = async ({ locals, params }: any) => {
 	const apousiologioId = params.apousiologioId;
 	const mathitesList = [];
@@ -50,28 +49,20 @@ export const load = async ({ locals, params }: any) => {
 	}
 	apousiologioDate = meraA + '/' + minas + '/' + xronos;
 
-	const mathitesProgramatos = serializeNonPOJOs(
-		await locals.pb.collection('programa').getFullList({
-			filter: 'mera = "' + params.meraId + '"'
-		})
-	);
+	const mathitesProgramatos = await locals.pb.collection('programa').getFullList({
+		filter: 'mera = "' + params.meraId + '"'
+	});
 
-	const parousies = serializeNonPOJOs(
-		await locals.pb.collection('parousies').getFullList({
-			filter: 'apousiologioId = "' + params.apousiologioId + '"'
-		})
-	);
+	const parousies = await locals.pb.collection('parousies').getFullList({
+		filter: 'apousiologioId = "' + params.apousiologioId + '"'
+	});
 
-	const mera = serializeNonPOJOs(
-		await locals.pb.collection('meres').getFirstListItem('id = "' + params.meraId + '"')
-	);
+	const mera = await locals.pb.collection('meres').getFirstListItem('id = "' + params.meraId + '"');
 
 	const parousiesDouble: any = [];
 
 	for (const mathitis of mathitesProgramatos) {
-		const mathitisObj = serializeNonPOJOs(
-			await locals.pb.collection('mathites').getOne(mathitis.mathitis)
-		);
+		const mathitisObj = await locals.pb.collection('mathites').getOne(mathitis.mathitis);
 		mathitisObj.parousia = false;
 
 		parousies.find((o: any, i: any) => {
@@ -87,10 +78,7 @@ export const load = async ({ locals, params }: any) => {
 	const difference = parousies.filter((element: any) => !parousiesDouble.includes(element));
 
 	for (const mathitis of difference) {
-		const mathitisObj = serializeNonPOJOs(
-			await locals.pb.collection('mathites').getOne(mathitis.mathitis)
-		);
-		
+		const mathitisObj = await locals.pb.collection('mathites').getOne(mathitis.mathitis);
 		mathitisObj.parousia = true;
 		mathitesList.push(mathitisObj);
 	}

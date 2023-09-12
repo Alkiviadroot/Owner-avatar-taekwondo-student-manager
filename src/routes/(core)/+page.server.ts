@@ -1,15 +1,14 @@
-import { addHours, serializeNonPOJOs } from '$lib/utils.js';
+import { addHours } from '$lib/utils.js';
 import moment from 'moment';
 export const load = async ({ locals }: any) => {
 	const d = addHours(new Date(), 3);
 	const simera = moment(d).format('MMDD');
 	const simeraFull = moment(d).format('YYYYMMDD');
 
-	const mathites = serializeNonPOJOs(
-		await locals.pb.collection('mathites').getFullList({
-			filter: 'energos = true'
-		})
-	);
+	const mathites = await locals.pb.collection('mathites').getFullList({
+		filter: 'energos = true'
+	})
+
 
 	for (const mathitis of mathites) {
 		const genethlia = moment(mathitis.genethlia).format('MMDD');
@@ -26,7 +25,7 @@ export const load = async ({ locals }: any) => {
 			const galM = moment(mathitis.gal).format('YYYYMMDD');
 			mathitis.deltioYgiasM = parseInt(deltioYgiasM) - parseInt(simeraFull);
 			mathitis.galM = parseInt(galM) - parseInt(simeraFull);
-		} catch {}
+		} catch { }
 	}
 
 	const simeraGenethlia = mathites.filter((item: any) => item.meres == 0);

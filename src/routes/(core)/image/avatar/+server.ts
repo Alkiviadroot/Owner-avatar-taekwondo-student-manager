@@ -10,8 +10,6 @@ export const GET = (async ({ locals, setHeaders }) => {
             return blob;
         });
 
-
-
     setHeaders({
         'Content-Type': img.type,
         'Content-Length': img.size.toString(),

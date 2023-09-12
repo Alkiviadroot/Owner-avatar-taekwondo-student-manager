@@ -1,4 +1,3 @@
-import { serializeNonPOJOs } from '$lib/utils.js';
 import { redirect, fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 import { epafes } from '$lib/schemas';
@@ -11,7 +10,7 @@ export const load = async ({ locals, params }: any) => {
 	let epafi = [];
 
 	try {
-		epafi = serializeNonPOJOs(await locals.pb.collection('epafes').getOne(epafiId));
+		epafi = await locals.pb.collection('epafes').getOne(epafiId);
 	} catch {
 		throw redirect(303, '/' + mathitisId);
 	}
