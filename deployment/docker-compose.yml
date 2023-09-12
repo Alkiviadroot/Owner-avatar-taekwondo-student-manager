@@ -11,7 +11,7 @@ services:
     volumes:
       - ./pocketbase:/pb_data
     env_file:
-      - ../.env
+      - .env
 
   tunnel:
     container_name: cloudflared-tunnel
@@ -19,4 +19,4 @@ services:
     restart: unless-stopped
     command: tunnel run
     env_file:
-      - ../.env
+      - .env

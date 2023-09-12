@@ -91,7 +91,7 @@
 					</span>
 				{/if}
 			</div>
-			<img class="h-auto max-w-full rounded-lg mt-7" src={deltia.forma_GDPR_View} alt="" />
+			<img class="h-auto max-w-full rounded-lg mt-7" src="/image/mathitis/{deltia.mathitis}/forma" alt="" />
 		{:else}
 			<aside class="alert variant-filled-error mt-5">
 				<div><Icon src={ExclamationTriangle} class="h-10 w-10" /></div>

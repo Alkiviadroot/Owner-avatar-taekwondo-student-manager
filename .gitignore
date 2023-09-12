@@ -12,4 +12,5 @@ vite.config.ts.timestamp-*
 pnpm-lock.yaml
 pocketbase
 package-lock.json
+.vercel
 docker-compose-dev.yml

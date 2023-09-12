@@ -69,7 +69,7 @@
 						><a href="/{row.id}">
 							<div class="flex items-center">
 								<Avatar
-									src={row.fotografiaView}
+									src="/image/mathitis/{row.id}/thumb"
 									initials="{row.onoma[0]}{row.epitheto[0]}"
 									width="w-10"
 									rounded="rounded-lg"

@@ -4,7 +4,6 @@ let meraA: string;
 let minas: string;
 let xronos: string;
 export const load = async ({ locals, params }: any) => {
-	const fileToken = await locals.pb.files.getToken();
 	const apousiologioId = params.apousiologioId;
 	const mathitesList = [];
 	let apousiologioDate = apousiologioId.slice(11, 20);
@@ -74,10 +73,6 @@ export const load = async ({ locals, params }: any) => {
 			await locals.pb.collection('mathites').getOne(mathitis.mathitis)
 		);
 		mathitisObj.parousia = false;
-		mathitisObj.fotografiaView = locals.pb.files.getUrl(mathitisObj, mathitisObj.fotografia, {
-			'token': fileToken,
-			'thumb': '100x100'
-		});
 
 		parousies.find((o: any, i: any) => {
 			if (o.mathitis == mathitisObj.id) {
@@ -95,10 +90,7 @@ export const load = async ({ locals, params }: any) => {
 		const mathitisObj = serializeNonPOJOs(
 			await locals.pb.collection('mathites').getOne(mathitis.mathitis)
 		);
-		mathitisObj.fotografiaView = locals.pb.files.getUrl(mathitisObj, mathitisObj.fotografia, {
-			'token': fileToken,
-			'thumb': '100x100'
-		});
+		
 		mathitisObj.parousia = true;
 		mathitesList.push(mathitisObj);
 	}

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Nav from '$lib/components/Nav.svelte';
 	import Logo from '$lib/images/logo.png';
-	import { getImageURL } from '$lib/utils';
 	import {
 		Modal,
 		AppShell,
@@ -13,21 +12,23 @@
 	import { onMount } from 'svelte';
 
 	let phone = false;
-	onMount(() => {
-		const screenWidth = window.screen.width;
-		if (screenWidth <= 500) phone = true;
-	});
 
 	function drawerOpen(): void {
 		drawerStore.open();
 	}
 
 	export let data;
-	let avatar = getImageURL(data.user?.collectionId, data.user?.id, data.user?.avatar);
+	let avatar = "/image/avatar"
 	let initials = data?.user?.name
 		.split(' ')
 		.map((n: string) => n[0])
 		.join('');
+
+	onMount(() => {
+		const screenWidth = window.screen.width;
+		if (screenWidth <= 500) phone = true;
+	});
+	
 </script>
 
 <Drawer>

@@ -2,7 +2,7 @@ ARG NODE_VERSION=lts-alpine
 
 # Built Sveltkit app
 FROM node:${NODE_VERSION} AS builder
-ARG PUBLIC_POCKETBASE_URL=https://pocketbase.alkiviadroot.net
+ARG PUBLIC_POCKETBASE_URL=http://0.0.0.0:8090
 WORKDIR /app
 COPY package.json ./
 RUN npm install

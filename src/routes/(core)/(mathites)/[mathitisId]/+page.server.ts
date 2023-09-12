@@ -11,7 +11,6 @@ let deltiId: string;
 let programa: any = [];
 
 export const load = async ({ locals, params }: any) => {
-	const fileToken = await locals.pb.files.getToken();
 	const mathitisId = params.mathitisId;
 	// MathitisForm
 	let profile: any = [];
@@ -31,9 +30,7 @@ export const load = async ({ locals, params }: any) => {
 	profile.enarksiRaw = profile.enarksi;
 	profile.genethlia = moment(profile.genethlia).format('YYYY-MM-DD');
 	profile.enarksi = moment(profile.enarksi).format('YYYY-MM-DD');
-	profile.fotografiaView = locals.pb.files.getUrl(profile, profile.fotografia, {
-		token: fileToken
-	});
+
 
 	const mathitisForm = await superValidate(profile, mathitis);
 
@@ -64,9 +61,7 @@ export const load = async ({ locals, params }: any) => {
 		deltiaR.gal_DateRaw = deltiaR.gal_Date;
 		deltiaR.deltio_Igias = moment(deltiaR.deltio_Igias).format('YYYY-MM-DD');
 		deltiaR.gal_Date = moment(deltiaR.gal_Date).format('YYYY-MM-DD');
-		deltiaR.forma_GDPR_View = locals.pb.files.getUrl(deltiaR, deltiaR.forma_GDPR, {
-			token: fileToken
-		});
+		
 	} catch {
 		deltiaNotAvailable = true;
 	}

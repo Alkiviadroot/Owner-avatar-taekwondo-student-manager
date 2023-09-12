@@ -1,7 +1,8 @@
-export const load = ({ locals }: any) => {
+
+export const load = async ({ locals }: any) => {
 	if (locals.user) {
 		return {
-			user: locals.user
+			user: locals.user,
 		};
 	}
 	return {

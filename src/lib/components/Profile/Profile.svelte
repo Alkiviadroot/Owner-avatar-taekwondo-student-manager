@@ -48,7 +48,7 @@
 <div class="flex justify-center p-2 mb-7">
 	<div class="relative inline-block mr-5">
 		<Avatar
-			src={mathitis.fotografiaView}
+			src="/image/mathitis/{mathitis.id}"
 			border="border-4  {mathitis.energos ? 'border-primary-500' : 'border-surface-400'}"
 			initials="{mathitis.onoma[0]}{mathitis.epitheto[0]}"
 			width="w-32"
