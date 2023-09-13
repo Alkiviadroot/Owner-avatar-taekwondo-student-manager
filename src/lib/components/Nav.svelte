@@ -3,12 +3,12 @@
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	const modalStore = getModalStore();
-	
+
 	// Drawer imports
-	import { getDrawerStore } from "@skeletonlabs/skeleton";
+	import { getDrawerStore } from '@skeletonlabs/skeleton';
 	const drawerStore = getDrawerStore();
-	
-	import {Avatar } from '@skeletonlabs/skeleton';
+
+	import { Avatar } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import {
 		Icon,
@@ -99,14 +99,14 @@
 			</li>
 		{/each}
 	</ul>
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div class="bottomAvatar" on:click={logoutModal}>
+	<div class="bottomAvatar">
 		<Avatar
 			src={avatar}
 			{initials}
 			width="w-10"
 			border="border-4 border-surface-300-600-token hover:!border-primary-500"
 			cursor="cursor-pointer"
+			on:click={logoutModal}
 		/>
 	</div>
 </nav>

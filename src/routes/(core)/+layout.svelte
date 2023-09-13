@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Nav from '$lib/components/Nav.svelte';
-	import Logo from '$lib/images/logo.png';
+	import { initializeStores } from '@skeletonlabs/skeleton';
+	initializeStores();
 
 	import {
 		Modal,
@@ -11,9 +11,14 @@
 		getDrawerStore
 	} from '@skeletonlabs/skeleton';
 
-
+	import Nav from '$lib/components/Nav.svelte';
+	import Logo from '$lib/images/logo.png';
 
 	import { onMount } from 'svelte';
+	onMount(() => {
+		const screenWidth = window.screen.width;
+		if (screenWidth <= 500) phone = true;
+	});
 
 	let phone = false;
 
@@ -28,11 +33,6 @@
 		.split(' ')
 		.map((n: string) => n[0])
 		.join('');
-
-	onMount(() => {
-		const screenWidth = window.screen.width;
-		if (screenWidth <= 500) phone = true;
-	});
 </script>
 
 <Drawer>
