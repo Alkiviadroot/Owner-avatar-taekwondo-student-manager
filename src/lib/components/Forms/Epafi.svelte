@@ -1,6 +1,10 @@
 <script lang="ts">
-	import { SlideToggle, modalStore } from '@skeletonlabs/skeleton';
+	// Modal imports
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	const modalStore = getModalStore();
+
+	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { epafes } from '$lib/schemas';
 	import { Icon, XCircle } from 'svelte-hero-icons';

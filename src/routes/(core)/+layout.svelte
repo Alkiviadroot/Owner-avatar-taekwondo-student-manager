@@ -1,24 +1,29 @@
 <script lang="ts">
 	import Nav from '$lib/components/Nav.svelte';
 	import Logo from '$lib/images/logo.png';
+
 	import {
 		Modal,
 		AppShell,
 		AppBar,
-		Drawer,
 		LightSwitch,
-		drawerStore
+		Drawer,
+		getDrawerStore
 	} from '@skeletonlabs/skeleton';
+
+
+
 	import { onMount } from 'svelte';
 
 	let phone = false;
 
 	function drawerOpen(): void {
+		const drawerStore = getDrawerStore();
 		drawerStore.open();
 	}
 
 	export let data;
-	let avatar = "/image/avatar"
+	let avatar = '/image/avatar';
 	let initials = data?.user?.name
 		.split(' ')
 		.map((n: string) => n[0])
@@ -28,7 +33,6 @@
 		const screenWidth = window.screen.width;
 		if (screenWidth <= 500) phone = true;
 	});
-	
 </script>
 
 <Drawer>

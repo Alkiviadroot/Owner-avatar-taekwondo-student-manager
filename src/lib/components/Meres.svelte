@@ -1,7 +1,10 @@
 <script lang="ts" defer>
-	import { Icon, XCircle } from 'svelte-hero-icons';
-	import { modalStore } from '@skeletonlabs/skeleton';
+	// Modal imports
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	const modalStore = getModalStore();
+
+	import { Icon, XCircle } from 'svelte-hero-icons';
 	export let data: any;
 	let meraSelect: string;
 

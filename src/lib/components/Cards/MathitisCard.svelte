@@ -1,7 +1,10 @@
 <script lang="ts">
-	import moment from 'moment';
-	import { modalStore } from '@skeletonlabs/skeleton';
+	// Modal imports
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	const modalStore = getModalStore();
+
+	import moment from 'moment';
 	import { Icon, Phone, Cake, Calendar } from 'svelte-hero-icons';
 	export let mathitis: any;
 	export let show: any;

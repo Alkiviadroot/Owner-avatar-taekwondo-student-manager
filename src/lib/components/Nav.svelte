@@ -1,6 +1,14 @@
 <script lang="ts">
-	import { drawerStore, Avatar, modalStore } from '@skeletonlabs/skeleton';
+	// Modal imports
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	const modalStore = getModalStore();
+	
+	// Drawer imports
+	import { getDrawerStore } from "@skeletonlabs/skeleton";
+	const drawerStore = getDrawerStore();
+	
+	import {Avatar } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import {
 		Icon,

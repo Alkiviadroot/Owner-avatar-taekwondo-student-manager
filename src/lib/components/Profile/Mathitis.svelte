@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { modalStore } from '@skeletonlabs/skeleton';
-	import moment from 'moment';
+	// Modal imports
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	const modalStore = getModalStore();
+	
+	import moment from 'moment';
 	import MathitisForm from '$lib/components/Forms/Mathitis.svelte';
 	import {
 		Icon,
