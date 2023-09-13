@@ -1,7 +1,10 @@
 <script lang="ts">
-	import Exetasi from '$lib/components/Forms/Exetasi.svelte';
-	import { modalStore } from '@skeletonlabs/skeleton';
+	// Modal imports
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	const modalStore = getModalStore();
+
+	import Exetasi from '$lib/components/Forms/Exetasi.svelte';
 	import { Icon, XCircle } from 'svelte-hero-icons';
 	import type { PageData } from './$types';
 	export let data: PageData;
