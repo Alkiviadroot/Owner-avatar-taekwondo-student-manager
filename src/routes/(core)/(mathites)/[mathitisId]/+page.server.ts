@@ -1,6 +1,6 @@
 import { redirect, fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
-import { mathitis, provlimata, deltia, exetasi } from '$lib/schemas';
+import { mathitis, provlimata, deltia, exetasi, timi,pliromeS } from '$lib/schemas';
 import moment from 'moment';
 
 let provlimataNotAvailable = false;
@@ -141,8 +141,62 @@ export const load = async ({ locals, params }: any) => {
 	} catch {
 		console.log('no record');
 	}
-	
 
+	let parousiesTable: any = [];
+
+	for (const parousia of parousies) {
+		let exist = false;
+		const id = parousia.xronos.toString() + parousia.minas.toString()
+		let data = {
+			id: id,
+			minas: parousia.minas,
+			xronos: parousia.xronos,
+			parousies: 1,
+			pliromenos: false,
+			timi: 0
+		}
+		if (parousiesTable.length == 0) {
+			parousiesTable.push(data);
+		} else {
+			for (const row of parousiesTable) {
+
+				if (row.id == id) {
+					row.parousies = row.parousies + 1;
+					exist = true;
+					break;
+				}
+			}
+			if (!exist) parousiesTable.push(data);
+		}
+
+		for (const row of parousiesTable) {
+			for (const pliromenos of pliromes) {
+				const id = pliromenos.xronos.toString() + pliromenos.minas.toString()
+				if (row.id == id) {
+					row.pliromenos = true;
+					row.timi = pliromenos.timi
+					break;
+				}
+			}
+		}
+	}
+	// sort
+	parousiesTable.sort((a: any, b: any) => {
+		const idA = a.id;
+		const idB = b.id;
+		// Use localeCompare to compare strings numerically
+		return idA.localeCompare(idB);
+	});
+
+	const uniqueXronosSet = new Set();
+	parousiesTable.forEach((obj: any) => {
+		uniqueXronosSet.add(obj.xronos);
+	});
+
+	// Convert the Set back to an array to get the unique 'xronos' values
+	const uniqueXronosArray = Array.from(uniqueXronosSet).reverse();
+
+	const pliromiForm = await superValidate(pliromeS);
 
 	return {
 		profile,
@@ -157,7 +211,10 @@ export const load = async ({ locals, params }: any) => {
 		exetasis,
 		programa,
 		meresAll,
-		meresMathiti
+		meresMathiti,
+		parousiesTable,
+		uniqueXronosArray,
+		pliromiForm
 	};
 };
 
@@ -327,5 +384,17 @@ export const actions = {
 				await locals.pb.collection('programa').create(formData);
 			} catch { }
 		}
+	},
+	pliromi: async ({ request, locals, params }: any) => {
+		const form = await request.formData();
+		const pliromiForm = await superValidate(form, pliromeS);
+		if (!pliromiForm.valid) {
+			return fail(400, {
+				pliromiForm
+			});
+		}
+
+		pliromiForm.data.mathitis = params.mathitisId;
+		await locals.pb.collection('pliromes').create(pliromiForm.data);
 	}
 };

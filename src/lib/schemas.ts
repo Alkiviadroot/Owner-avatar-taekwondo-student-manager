@@ -178,3 +178,15 @@ export const timi = z
 		geniki: true,
 		timi: true,
 	});
+
+export const pliromeS = z
+	.object({
+		mathitis: z.string().trim(),
+		minas: z.number(),
+		xronos: z.number(),
+		timi: z.number({ required_error: 'Απαιτείται' }).nonnegative('Μη έγκυρος χαρακτήρας ( - )')
+			.finite()
+			.safe(),
+	}).partial({
+		mathitis: true,
+	});
