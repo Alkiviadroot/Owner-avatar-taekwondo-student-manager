@@ -165,3 +165,16 @@ export const meres = z
 	.partial({
 		sort: true
 	});
+
+export const timi = z
+	.object({
+		mathitis: z.string().trim(),
+		geniki: z.string().trim(),
+		timi: z.number({ required_error: 'Απαιτείται' }).nonnegative('Μη έγκυρος χαρακτήρας ( - )')
+			.finite()
+			.safe(),
+	}).partial({
+		mathitis: true,
+		geniki: true,
+		timi: true,
+	});

@@ -1,4 +1,4 @@
-<script lang="ts" defer>
+<script lang="ts">
 	// Modal imports
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';

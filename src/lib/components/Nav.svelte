@@ -16,7 +16,8 @@
 		UserPlus,
 		MagnifyingGlass,
 		CalendarDays,
-		SquaresPlus
+		SquaresPlus,
+		Cog6Tooth
 	} from 'svelte-hero-icons';
 	import { getPosition } from '$lib/utils';
 
@@ -76,6 +77,14 @@
 			href: '/meres'
 		}
 	];
+	const navigationB = [
+		{
+			id: 'settings',
+			title: 'Ρυθμίσεις',
+			icon: Cog6Tooth,
+			href: '/settings'
+		}
+	];
 </script>
 
 <nav class="list-nav p-4 navC">
@@ -99,15 +108,38 @@
 			</li>
 		{/each}
 	</ul>
-	<div class="bottomAvatar">
-		<Avatar
-			src={avatar}
-			{initials}
-			width="w-10"
-			border="border-4 border-surface-300-600-token hover:!border-primary-500"
-			cursor="cursor-pointer"
-			on:click={logoutModal}
-		/>
+	<div class="bottom w-full">
+		<ul >
+			{#each navigationB as navItem}
+				<li>
+					<a
+						id={navItem.id}
+						href={navItem.href}
+						on:click={drawerClose}
+						class="font-medium {$page.url.pathname.substring(
+							0,
+							getPosition($page.url.pathname, '/', 2)
+						) === navItem.href
+							? '!bg-primary-500'
+							: ''}"
+					>
+						<Icon src={navItem.icon} class="w-4 h-4 mr-1" />
+						{navItem.title}
+					</a>
+				</li>
+			{/each}
+		</ul>
+
+		<div class="avatar">
+			<Avatar
+				src={avatar}
+				{initials}
+				width="w-10"
+				border="border-4 border-surface-300-600-token hover:!border-primary-500"
+				cursor="cursor-pointer"
+				on:click={logoutModal}
+			/>
+		</div>
 	</div>
 </nav>
 
@@ -118,9 +150,12 @@
 		position: relative;
 		height: calc(100% - 30px);
 	}
-	.bottomAvatar {
+	.bottom {
 		position: absolute;
-		left: 30px;
 		bottom: 0;
+	}
+	.avatar {
+		left: 30px;
+		margin-top: 20px;
 	}
 </style>

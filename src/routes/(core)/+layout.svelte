@@ -22,8 +22,8 @@
 
 	let phone = false;
 
+	const drawerStore = getDrawerStore();
 	function drawerOpen(): void {
-		const drawerStore = getDrawerStore();
 		drawerStore.open();
 	}
 

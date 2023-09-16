@@ -122,6 +122,28 @@ export const load = async ({ locals, params }: any) => {
 		}
 	}
 
+	let parousies: any = [];
+	try {
+		parousies = await locals.pb.collection('parousies').getFullList({
+			filter: 'mathitis = "' + mathitisId + '"'
+		});
+
+	} catch {
+		console.log('no record');
+	}
+
+	let pliromes: any = [];
+	try {
+		pliromes = await locals.pb.collection('pliromes').getFullList({
+			filter: 'mathitis = "' + mathitisId + '"'
+		});
+
+	} catch {
+		console.log('no record');
+	}
+	
+
+
 	return {
 		profile,
 		mathitisForm,
