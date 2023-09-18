@@ -63,16 +63,19 @@ export const load = async ({ locals, params }: any) => {
 
 	for (const mathitis of mathitesProgramatos) {
 		const mathitisObj = await locals.pb.collection('mathites').getOne(mathitis.mathitis);
-		mathitisObj.parousia = false;
+		if (mathitisObj.energos) {
+			mathitisObj.parousia = false;
 
-		parousies.find((o: any, i: any) => {
-			if (o.mathitis == mathitisObj.id) {
-				mathitisObj.parousia = true;
-				parousiesDouble.push(parousies[i]);
-			}
-		});
+			parousies.find((o: any, i: any) => {
+				if (o.mathitis == mathitisObj.id) {
+					mathitisObj.parousia = true;
+					parousiesDouble.push(parousies[i]);
+				}
+			});
 
-		mathitesList.push(mathitisObj);
+			mathitesList.push(mathitisObj);
+		}
+
 	}
 
 	const difference = parousies.filter((element: any) => !parousiesDouble.includes(element));
